@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {BookList} from './components/BookList';
+import {ResultStats} from './components/ResultStats';
 import {SearchBox} from './components/SearchBox';
 
 import {parse} from 'papaparse';
@@ -76,6 +77,7 @@ class App extends Component {
           <SearchBox handleSubmit={this.handleSubmit}/>
         </header>
         <main>
+          <ResultStats searchResults={this.state.searchResults}/>
           <BookList searchResults={this.state.searchResults} searchQuery={this.state.searchQuery}/>
         </main>
       </div>
