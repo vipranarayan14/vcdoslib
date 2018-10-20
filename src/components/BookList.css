@@ -1,0 +1,26 @@
+.booklist {
+  width: 650px;
+  margin: auto;
+}
+
+.booklist span {
+  padding: 5px;
+}
+
+.booklist .row {
+  background-color: #eef3bb;
+  border-radius: 5px;
+  margin: 5px;
+  width: 100%;
+}
+
+.booklist span.accno, span.rack, span.subject {
+  display: inline-block;
+  width: 50px;
+  text-align: center;
+}
+
+.booklist span.title, span.author {
+  display: inline-block;
+  width: 200px;
+}
