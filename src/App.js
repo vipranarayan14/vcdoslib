@@ -18,7 +18,7 @@ const options = {
   maxPatternLength: 32,
   minMatchCharLength: 1,
   shouldSort: true,
-  threshold: 0.5
+  threshold: 0.4
 };
 
 const parseCSV = () => new Promise((resolve, reject) => {
