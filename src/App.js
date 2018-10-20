@@ -10,7 +10,9 @@ import './App.css';
 const options = {
   distance: 100,
   findAllMatches: true,
-  keys: ['BookTitle', 'Author', 'AccesionNo', 'RackNo'],
+  keys: [
+    'BookTitle', 'Author', 'AccesionNo', 'RackNo'
+  ],
   location: 0,
   maxPatternLength: 32,
   minMatchCharLength: 1,
@@ -68,8 +70,14 @@ class App extends Component {
 
     return (
       <div className="App">
-        <SearchBox handleSubmit={this.handleSubmit}/>
-        <BookList searchResults={this.state.searchResults} searchQuery={this.state.searchQuery}/>
+        <header>
+          <h1>Library</h1>
+          <h2>Department of Sanskrit, RKM Vivekananda College</h2>
+          <SearchBox handleSubmit={this.handleSubmit}/>
+        </header>
+        <main>
+          <BookList searchResults={this.state.searchResults} searchQuery={this.state.searchQuery}/>
+        </main>
       </div>
     );
   }
