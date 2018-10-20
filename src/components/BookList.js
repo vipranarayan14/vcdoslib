@@ -6,8 +6,10 @@ import './BookList.css';
 export const BookList = ({searchResults}) => !!searchResults.length && (
 
   <div className="booklist">
-    <div>Found: {searchResults.length}
-      books</div>
+    <div className="results-stats">
+      Found: {searchResults.length}
+      books
+    </div>
     {
       searchResults.map((row, i) => (
         <div className="row" key={i}>
