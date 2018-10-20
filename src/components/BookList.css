@@ -1,25 +1,44 @@
-.booklist {
+.BookList {
   width: 100%;
+  overflow-x: auto;
 }
 
-.booklist span {
-  padding: 5px;
-}
-
-.booklist .row {
-  background-color: #eef3bb;
-  border-radius: 5px;
-  margin: 5px;
+.BookList table {
   width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
 }
 
-.booklist span.accno, span.rack, span.subject {
-  display: inline-block;
-  width: 50px;
+.BookList .book {
+  border: 2px solid rgba(0, 0, 0, 0.15);
+  box-shadow: 2px 2px 5px 0px rgba(50, 50, 50, 0.75);
+}
+
+.BookList .book.missing {
+  background: #faa;
+}
+
+.BookList .book td {
+  border: 0px;
+  border-style: none solid solid none;
+  padding: 10px;
+}
+
+.BookList .book td div {
+  padding: 3px 0;
+}
+
+.BookList .book .title {
+  font-weight: bold;
+}
+
+.BookList .book .author {
+  color: #444;
+}
+
+.BookList .book .accno,
+.BookList .book .rack,
+.BookList .book .subject {
   text-align: center;
-}
-
-.booklist span.title, span.author {
-  display: inline-block;
-  width: 200px;
+  min-width: 50px;
 }
