@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-// import './SearchBox.css';
+import './SearchBox.css';
 
 export const SearchBox = ({handleSubmit}) => (
 
