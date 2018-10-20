@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {BookList} from './components/BookList';
+import {Results} from './components/Results';
 import {ResultStats} from './components/ResultStats';
 import {SearchBox} from './components/SearchBox';
 
@@ -78,7 +78,7 @@ class App extends Component {
         </header>
         <main>
           <ResultStats searchResults={this.state.searchResults}/>
-          <BookList searchResults={this.state.searchResults} searchQuery={this.state.searchQuery}/>
+          <Results searchResults={this.state.searchResults} searchQuery={this.state.searchQuery}/>
         </main>
       </div>
     );

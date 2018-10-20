@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import './BookList.css';
+import './Results.css';
 
-export const BookList = ({searchResults}) => !!searchResults.length && (
+export const Results = ({searchResults}) => !!searchResults.length && (
 
-  <div className="BookList">
+  <div className="Results">
     <table>
       <tbody>
         {
@@ -36,6 +36,6 @@ export const BookList = ({searchResults}) => !!searchResults.length && (
   </div>
 );
 
-BookList.propTypes = {
+Results.propTypes = {
   searchResults: PropTypes.array.isRequired
 }

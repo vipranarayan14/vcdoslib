@@ -1,44 +1,44 @@
-.BookList {
+.Results {
   width: 100%;
   overflow-x: auto;
 }
 
-.BookList table {
+.Results table {
   width: 100%;
   border-collapse: separate;
   border-spacing: 0;
 }
 
-.BookList .book {
+.Results .book {
   border: 2px solid rgba(0, 0, 0, 0.15);
   box-shadow: 2px 2px 5px 0px rgba(50, 50, 50, 0.75);
 }
 
-.BookList .book.missing {
+.Results .book.missing {
   background: #faa;
 }
 
-.BookList .book td {
+.Results .book td {
   border: 0px;
   border-style: none solid solid none;
   padding: 10px;
 }
 
-.BookList .book td div {
+.Results .book td div {
   padding: 3px 0;
 }
 
-.BookList .book .title {
+.Results .book .title {
   font-weight: bold;
 }
 
-.BookList .book .author {
+.Results .book .author {
   color: #444;
 }
 
-.BookList .book .accno,
-.BookList .book .rack,
-.BookList .book .subject {
+.Results .book .accno,
+.Results .book .rack,
+.Results .book .subject {
   text-align: center;
   min-width: 50px;
 }
