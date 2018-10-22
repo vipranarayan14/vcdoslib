@@ -7,7 +7,7 @@ export const SearchBox = ({handleSubmit}) => (
 
   <div className="SearchBox">
     <form onSubmit={handleSubmit}>
-      <input name="search" type="search"/>
+      <input name="search" type="search" autoFocus/>
       <input type="submit" value="Search"/>
     </form>
   </div>
