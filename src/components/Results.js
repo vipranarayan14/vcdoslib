@@ -12,7 +12,7 @@ export const Results = ({searchResults}) => !!searchResults.length && (
           searchResults.map((row, i) => (
             <tr
               className={"book" + (
-                row['RackNo'] === 'R-0-Z'
+                row['RackNo'] === 'NA'
                   ? " missing"
                   : ""
               )}
@@ -25,8 +25,8 @@ export const Results = ({searchResults}) => !!searchResults.length && (
                 {!!row['Author'] && <div className="author">by {row['Author']}</div>}
               </td>
               <td>
-                {(!!row['RackNo'] && row['RackNo'] !== 'R-0-Z') && <div className="rack">{row['RackNo']}</div>}
-                {!!row['Classification'] && <div className="subject">{row['Classification']}</div>}
+              {!!row['Classification'] && <div className="subject">{row['Classification']}</div>}
+                <div className="rack">{row['RackNo']}</div>
               </td>
             </tr>
           ))
