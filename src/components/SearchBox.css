@@ -27,6 +27,7 @@
   background-color: #f0860f;
   color: #fff;
   font-weight: bold;
+  font-size: 1.1rem;
 }
 
 @media (min-width: 650px) {
