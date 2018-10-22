@@ -33,13 +33,18 @@
   font-weight: bold;
 }
 
-.Results .book .author {
+.Results .book .author,
+.Results .book .subject {
   color: #444;
 }
 
-.Results .book .accno,
-.Results .book .rack,
 .Results .book .subject {
+    font-size: .9rem;
+    font-style: italic;
+}
+
+.Results .book .accno,
+.Results .book .rack, {
   text-align: center;
   min-width: 50px;
 }

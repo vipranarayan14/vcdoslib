@@ -1,7 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import {subjects} from './subjects';
+
 import './Results.css';
+
+const markMissing = rack => rack === 'NA'
+  ? ' missing'
+  : '';
 
 export const Results = ({searchResults}) => !!searchResults.length && (
 
@@ -9,27 +15,30 @@ export const Results = ({searchResults}) => !!searchResults.length && (
     <table>
       <tbody>
         {
-          searchResults.map((row, i) => (
-            <tr
-              className={"book" + (
-                row['RackNo'] === 'NA'
-                  ? " missing"
-                  : ""
-              )}
-              key={i}>
-              <td>
-                {!!row['AccesionNo'] && <div className="accno">{row['AccesionNo']}</div>}
-              </td>
-              <td>
-                <div className="title">{row['BookTitle']}</div>
-                {!!row['Author'] && <div className="author">by {row['Author']}</div>}
-              </td>
-              <td>
-              {!!row['Classification'] && <div className="subject">{row['Classification']}</div>}
-                <div className="rack">{row['RackNo']}</div>
-              </td>
-            </tr>
-          ))
+          searchResults.map((row, i) => {
+
+            const accno = row['AccesionNo'];
+            const title = row['BookTitle'];
+            const author = row['Author'];
+            const subject = row['Classification'];
+            const rack = row['RackNo'];
+
+            return (
+              <tr className={"book" + markMissing(row['RackNo'])} key={i}>
+                <td>
+                  {!!accno && <div className="accno">{accno}</div>}
+                </td>
+                <td>
+                  <div className="title">{title}</div>
+                  {!!author && <div className="author">by {author}</div>}
+                  {!!subject && <div className="subject">{`${subjects[subject]} (${subject})`}</div>}
+                </td>
+                <td>
+                  <div className="rack">{rack}</div>
+                </td>
+              </tr>
+            );
+          })
         }
       </tbody>
     </table>
