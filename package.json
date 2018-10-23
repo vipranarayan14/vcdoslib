@@ -28,7 +28,6 @@
     "papaparse": "4.6.1"
   },
   "description": "Website for searching the catalogue of the library in the Department of Sanskrit, RKM Vivekananda College.",
-  "main": "index.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/vipranarayan14/vcdoslib.git"
@@ -40,6 +39,5 @@
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/vipranarayan14/vcdoslib/issues"
-  },
-  "homepage": "https://github.com/vipranarayan14/vcdoslib#readme"
+  }
 }
