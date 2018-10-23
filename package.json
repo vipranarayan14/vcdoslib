@@ -1,5 +1,5 @@
 {
-  "name": "vc-dos-lib",
+  "name": "vcdoslib",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -26,5 +26,20 @@
   "devDependencies": {
     "fuse.js": "3.2.1",
     "papaparse": "4.6.1"
-  }
+  },
+  "description": "Website for searching the catalogue of the library in the Department of Sanskrit, RKM Vivekananda College.",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vipranarayan14/vcdoslib.git"
+  },
+  "keywords": [
+    "library"
+  ],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vipranarayan14/vcdoslib/issues"
+  },
+  "homepage": "https://github.com/vipranarayan14/vcdoslib#readme"
 }
