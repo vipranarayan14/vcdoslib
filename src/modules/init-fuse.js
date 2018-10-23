@@ -3,6 +3,7 @@ import * as Fuse from 'fuse.js';
 const options = {
   distance: 100,
   findAllMatches: true,
+  includeScore: true,
   keys: [
     'BookTitle', 'Author', 'AccesionNo', 'RackNo'
   ],

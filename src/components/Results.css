@@ -1,7 +1,6 @@
-.Results {
-  background-color: #fff;
-  width: 100%;
+.Results .ResultBox {
   overflow-x: auto;
+  background-color: #fff;
 }
 
 .Results table {

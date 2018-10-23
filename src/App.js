@@ -3,7 +3,6 @@ import React, {Component} from 'react';
 
 /* components */
 import {Results} from './components/Results';
-import {ResultStats} from './components/ResultStats';
 import {SearchBox} from './components/SearchBox';
 
 /* modules */
@@ -23,7 +22,10 @@ class App extends Component {
 
     this.state = {
       searchQuery: '',
-      searchResults: []
+      searchResults: {
+        exactMatches: [],
+        partialMatches: []
+      }
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -41,10 +43,23 @@ class App extends Component {
   handleSubmit(e) {
     e.preventDefault();
 
-    this.setState({
-      searchQuery: e.target.search.value,
-      searchResults: fuse.search(e.target.search.value)
-    });
+    const searchQuery = e.target.search.value;
+    const fuseResults = fuse.search(searchQuery);
+
+    const firstPartialMatchIndex = fuseResults.findIndex(result => result.score > 0.05);
+
+    /* using `firstPartialMatchIndex` directly will not give unexpected results. Tested! */
+    const exactMatches = fuseResults.slice(0, firstPartialMatchIndex);
+
+    /* Array.slice() will extract till the end if end is not specified. */
+    const partialMatches = fuseResults.slice(firstPartialMatchIndex);
+
+    const searchResults = {
+      exactMatches,
+      partialMatches
+    };
+
+    this.setState({searchQuery, searchResults});
   }
 
   render() {
@@ -56,7 +71,6 @@ class App extends Component {
           <SearchBox handleSubmit={this.handleSubmit}/>
         </header>
         <main>
-          <ResultStats searchResults={this.state.searchResults}/>
           <Results searchResults={this.state.searchResults} searchQuery={this.state.searchQuery}/>
         </main>
       </div>
