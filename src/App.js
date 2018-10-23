@@ -1,37 +1,17 @@
+/* libraries */
 import React, {Component} from 'react';
+
+/* components */
 import {Results} from './components/Results';
 import {ResultStats} from './components/ResultStats';
 import {SearchBox} from './components/SearchBox';
 
-import {parse} from 'papaparse';
-import * as Fuse from 'fuse.js';
+/* modules */
+import {initFuse} from './modules/init-fuse';
+import {parseCSV} from './modules/parse-csv';
 
+/* stylesheets */
 import './App.css';
-
-const options = {
-  distance: 100,
-  findAllMatches: true,
-  keys: [
-    'BookTitle', 'Author', 'AccesionNo', 'RackNo'
-  ],
-  location: 0,
-  maxPatternLength: 32,
-  minMatchCharLength: 1,
-  shouldSort: true,
-  threshold: 0.4
-};
-
-const parseCSV = () => new Promise((resolve, reject) => {
-  parse(
-    'https://docs.google.com/spreadsheets/d/e/2PACX-1vQ5qIl3I8n3EKIfsr5rYIhmg8eNffWrKI6zFUDYNDPUENq4KQp5SmnxKQ5OkzbxErTBX3y' +
-        '78r7Y488E/pub?gid=0&single=true&output=csv',
-    {
-      header: true,
-      download: true,
-      complete: resolve
-    }
-  );
-});
 
 let allbooks = [],
   fuse;
@@ -53,7 +33,7 @@ class App extends Component {
 
     parseCSV().then(results => {
       allbooks = results.data;
-      fuse = new Fuse(allbooks, options);
+      fuse = initFuse(allbooks);
     });
 
   }
@@ -68,7 +48,6 @@ class App extends Component {
   }
 
   render() {
-
     return (
       <div className="App">
         <header>
