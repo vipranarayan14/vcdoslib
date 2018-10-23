@@ -3,6 +3,7 @@ import React, {Component} from 'react';
 
 /* components */
 import {Results} from './components/Results';
+import {ScrollToTop} from './components/ScrollToTop';
 import {SearchBox} from './components/SearchBox';
 
 /* modules */
@@ -21,6 +22,7 @@ class App extends Component {
     super(props);
 
     this.state = {
+      isTop: true,
       searchQuery: '',
       searchResults: {
         exactMatches: [],
@@ -28,6 +30,7 @@ class App extends Component {
       }
     };
 
+    this.handleScroll = this.handleScroll.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
@@ -37,6 +40,16 @@ class App extends Component {
       allbooks = results.data;
       fuse = initFuse(allbooks);
     });
+
+    window.addEventListener('scroll', this.handleScroll);
+
+  }
+
+  handleScroll() {
+
+    const isTop = document.body.scrollTop < 250 && document.documentElement.scrollTop < 250;
+
+    this.setState({isTop});
 
   }
 
@@ -65,6 +78,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        {console.log(this.state.isTop)}
         <header>
           <h1>Library</h1>
           <h2>Department of Sanskrit, RKM Vivekananda College</h2>
@@ -72,6 +86,7 @@ class App extends Component {
         </header>
         <main>
           <Results searchResults={this.state.searchResults} searchQuery={this.state.searchQuery}/>
+          <ScrollToTop isTop={this.state.isTop}/>
         </main>
       </div>
     );
