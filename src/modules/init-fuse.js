@@ -11,7 +11,7 @@ const options = {
   maxPatternLength: 32,
   minMatchCharLength: 1,
   shouldSort: true,
-  threshold: 0.4
+  threshold: 0.5
 };
 
 export const initFuse = books => new Fuse(books, options);
