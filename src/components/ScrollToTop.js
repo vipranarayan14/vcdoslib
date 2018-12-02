@@ -1,7 +1,7 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React from 'react';
+import PropTypes from 'prop-types';
 
-import "./ScrollToTop.css";
+import './ScrollToTop.css';
 
 const handleScrollToTopClick = () => {
   document.body.scrollTop = 0; // For Safari
