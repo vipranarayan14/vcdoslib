@@ -10,13 +10,13 @@ export const ResultStats = ({ searchResults }) => {
   return (
     <div className="ResultStats">
       <span>
-        Found &nbsp; {totalExactMatches || 'no'}
-        &nbsp; exact match {totalExactMatches > 1 && 'es'}
-        &nbsp; {totalExactMatches < 1 ? 'but' : 'and'}
+        Found&nbsp;{totalExactMatches || 'no'}
+        &nbsp;exact match{totalExactMatches > 1 && 'es'}
+        &nbsp;{totalExactMatches < 1 ? 'but' : 'and'}
       </span>
       <span>
-        &nbsp; {totalPartialMatches}
-        &nbsp; partial match {totalExactMatches > 1 && 'es'}.
+        &nbsp;{totalPartialMatches}
+        &nbsp;partial match{totalPartialMatches > 1 && 'es'}.
       </span>
     </div>
   );
