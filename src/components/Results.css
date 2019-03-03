@@ -50,3 +50,11 @@
   text-align: center;
   min-width: 50px;
 }
+
+.Results.not-found {
+  margin: 20px 0;
+  text-align: center;
+  font-weight: bold;
+  font-size: 1.1em;
+  color: #555555;
+}

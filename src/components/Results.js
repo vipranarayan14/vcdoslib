@@ -7,7 +7,7 @@ import { ResultStats } from './ResultStats';
 import './Results.css';
 
 export const Results = ({ searchResults }) =>
-  Boolean(searchResults.partialMatches.length) && (
+  searchResults.partialMatches.length ? (
     <div className="Results">
       <ResultStats searchResults={searchResults} />
 
@@ -16,6 +16,8 @@ export const Results = ({ searchResults }) =>
       <p>Did you mean...</p>
       <ResultBox searchResults={searchResults.partialMatches} />
     </div>
+  ) : (
+    <div className="Results not-found">No Results Found!</div>
   );
 
 Results.propTypes = {
