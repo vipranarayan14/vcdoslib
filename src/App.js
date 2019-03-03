@@ -29,15 +29,24 @@ class App extends Component {
       }
     };
 
+    this.logError = console.error; //eslint-disable-line no-console
     this.handleScroll = this.handleScroll.bind(this);
+    this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.getSearchResults = this.getSearchResults.bind(this);
+    this.setSearchQueryFromHash = this.setSearchQueryFromHash.bind(this);
   }
 
   componentDidMount() {
-    parseCSV().then(results => {
-      allbooks = results.data;
-      fuse = initFuse(allbooks);
-    });
+    this.setSearchQueryFromHash();
+
+    parseCSV()
+      .then(results => {
+        allbooks = results.data;
+        fuse = initFuse(allbooks);
+      })
+      .then(this.getSearchResults)
+      .catch(err => this.logError(err));
 
     window.addEventListener('scroll', this.handleScroll);
   }
@@ -49,28 +58,56 @@ class App extends Component {
     this.setState({ isTop });
   }
 
+  handleChange(e) {
+    this.setState({
+      searchQuery: e.target.value
+    });
+  }
+
   handleSubmit(e) {
     e.preventDefault();
 
-    const searchQuery = e.target.search.value;
-    const fuseResults = fuse.search(searchQuery);
+    window.location.hash = `/search/${encodeURIComponent(
+      this.state.searchQuery
+    )}`;
 
-    const firstPartialMatchIndex = fuseResults.findIndex(
-      result => result.score > 0.05
-    );
+    this.getSearchResults();
+  }
 
-    /* using `firstPartialMatchIndex` directly will not give unexpected results. Tested! */
-    const exactMatches = fuseResults.slice(0, firstPartialMatchIndex);
+  setSearchQueryFromHash() {
+    const searchQueryRegex = /#\/search\/(.+)/;
+    const encodedSearchQuery = window.location.hash.match(searchQueryRegex);
 
-    /* Array.slice() will extract till the end if end is not specified. */
-    const partialMatches = fuseResults.slice(firstPartialMatchIndex);
+    let searchQuery = '';
 
-    const searchResults = {
-      exactMatches,
-      partialMatches
-    };
+    if (encodedSearchQuery) {
+      searchQuery = decodeURIComponent(encodedSearchQuery[1]);
+    }
 
-    this.setState({ searchQuery, searchResults });
+    this.setState({ searchQuery });
+  }
+
+  getSearchResults() {
+    if (this.state.searchQuery) {
+      const fuseResults = fuse.search(this.state.searchQuery);
+
+      const firstPartialMatchIndex = fuseResults.findIndex(
+        result => result.score > 0.05
+      );
+
+      /* using `firstPartialMatchIndex` directly will not give unexpected results. Tested! */
+      const exactMatches = fuseResults.slice(0, firstPartialMatchIndex);
+
+      /* Array.slice() will extract till the end if end is not specified. */
+      const partialMatches = fuseResults.slice(firstPartialMatchIndex);
+
+      const searchResults = {
+        exactMatches,
+        partialMatches
+      };
+
+      this.setState({ searchResults });
+    }
   }
 
   render() {
@@ -78,8 +115,15 @@ class App extends Component {
       <div className="App">
         <header>
           <h1>Library</h1>
-          <h2>Department of Sanskrit, RKM Vivekananda College</h2>
-          <SearchBox handleSubmit={this.handleSubmit} />
+          <h2>
+            Department of Sanskrit <br />
+            RKM Vivekananda College
+          </h2>
+          <SearchBox
+            searchQuery={this.state.searchQuery}
+            handleChange={this.handleChange}
+            handleSubmit={this.handleSubmit}
+          />
         </header>
         <main>
           <Results

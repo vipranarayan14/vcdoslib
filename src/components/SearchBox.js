@@ -3,11 +3,17 @@ import PropTypes from 'prop-types';
 
 import './SearchBox.css';
 
-export const SearchBox = ({ handleSubmit }) => (
+export const SearchBox = ({ searchQuery, handleChange, handleSubmit }) => (
   <div className="SearchBox">
     <form onSubmit={handleSubmit}>
       <span className="search-input">
-        <input name="search" type="search" autoFocus />
+        <input
+          name="search"
+          type="search"
+          defaultValue={searchQuery}
+          onChange={handleChange}
+          autoFocus
+        />
       </span>
       <span className="search-submit">
         <input type="submit" value="Search" />
@@ -17,5 +23,7 @@ export const SearchBox = ({ handleSubmit }) => (
 );
 
 SearchBox.propTypes = {
-  handleSubmit: PropTypes.func.isRequired
+  handleChange: PropTypes.func.isRequired,
+  handleSubmit: PropTypes.func.isRequired,
+  searchQuery: PropTypes.string.isRequired
 };
