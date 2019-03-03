@@ -22,6 +22,7 @@ class App extends Component {
 
     this.state = {
       isTop: true,
+      isHomepage: true,
       searchQuery: '',
       searchResults: {
         exactMatches: [],
@@ -71,6 +72,10 @@ class App extends Component {
       this.state.searchQuery
     )}`;
 
+    this.setState({
+      isHomepage: false
+    });
+
     this.getSearchResults();
   }
 
@@ -78,13 +83,12 @@ class App extends Component {
     const searchQueryRegex = /#\/search\/(.+)/;
     const encodedSearchQuery = window.location.hash.match(searchQueryRegex);
 
-    let searchQuery = '';
-
     if (encodedSearchQuery) {
-      searchQuery = decodeURIComponent(encodedSearchQuery[1]);
+      this.setState({
+        searchQuery: decodeURIComponent(encodedSearchQuery[1]),
+        isHomepage: false
+      });
     }
-
-    this.setState({ searchQuery });
   }
 
   getSearchResults() {
@@ -128,7 +132,7 @@ class App extends Component {
         <main>
           <Results
             searchResults={this.state.searchResults}
-            searchQuery={this.state.searchQuery}
+            isHomepage={this.state.isHomepage}
           />
           <ScrollToTop isTop={this.state.isTop} />
         </main>
