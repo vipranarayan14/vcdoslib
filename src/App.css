@@ -8,7 +8,7 @@
   background-color: #5b9e4d;
   color: #fff;
   padding: 10px;
-  height: 250px;
+  min-height: 250px;
 }
 
 .App header h1 {
@@ -27,7 +27,7 @@
 }
 
 @media (min-width: 650px) {
-    main {
-        max-width: 650px;
-    }
+  main {
+    max-width: 650px;
+  }
 }
