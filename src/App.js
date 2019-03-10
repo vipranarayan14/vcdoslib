@@ -33,12 +33,16 @@ class App extends Component {
     this.logError = console.error; //eslint-disable-line no-console
     this.handleScroll = this.handleScroll.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.handleHashchange = this.handleHashchange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.getSearchResults = this.getSearchResults.bind(this);
     this.setSearchQueryFromHash = this.setSearchQueryFromHash.bind(this);
   }
 
   componentDidMount() {
+    window.addEventListener('scroll', this.handleScroll);
+    window.addEventListener('hashchange', this.handleHashchange);
+
     this.setSearchQueryFromHash();
 
     parseCSV()
@@ -48,8 +52,6 @@ class App extends Component {
       })
       .then(this.getSearchResults)
       .catch(err => this.logError(err));
-
-    window.addEventListener('scroll', this.handleScroll);
   }
 
   handleScroll() {
@@ -65,6 +67,11 @@ class App extends Component {
     });
   }
 
+  handleHashchange() {
+    this.setSearchQueryFromHash();
+    this.getSearchResults();
+  }
+
   handleSubmit(e) {
     e.preventDefault();
 
@@ -75,8 +82,6 @@ class App extends Component {
     this.setState({
       isHomepage: false
     });
-
-    this.getSearchResults();
   }
 
   setSearchQueryFromHash() {
