@@ -17,7 +17,8 @@ export const Results = ({ searchResults, isLoadingData, isHomepage }) =>
       <ResultBox searchResults={searchResults.partialMatches} />
     </div>
   ) : (
-    !isHomepage && !isLoadingData && <div className="Results not-found">No Results Found!</div>
+    !isHomepage &&
+    !isLoadingData && <div className="Results not-found">No Results Found!</div>
   );
 
 Results.propTypes = {

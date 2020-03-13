@@ -4,9 +4,7 @@ const options = {
   distance: 100,
   findAllMatches: true,
   includeScore: true,
-  keys: [
-    'BookTitle', 'Author', 'AccesionNo', 'RackNo'
-  ],
+  keys: ['BookTitle', 'Author', 'AccesionNo', 'RackNo'],
   location: 0,
   maxPatternLength: 32,
   minMatchCharLength: 1,

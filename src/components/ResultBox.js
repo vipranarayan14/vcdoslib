@@ -24,9 +24,7 @@ export const ResultBox = ({ searchResults }) =>
               <div className="title">{title}</div>
               {!!author && <div className="author">by {author}</div>}
               {!!subject && (
-                <div className="subject">{`${
-                  subjects[subject]
-                } (${subject})`}</div>
+                <div className="subject">{`${subjects[subject]} (${subject})`}</div>
               )}
             </div>
             <div className="col15">

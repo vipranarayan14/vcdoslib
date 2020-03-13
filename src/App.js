@@ -18,9 +18,7 @@ let allbooks = [],
   fuse;
 
 class App extends Component {
-
   constructor(props) {
-
     super(props);
 
     this.state = {
@@ -41,11 +39,9 @@ class App extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.getSearchResults = this.getSearchResults.bind(this);
     this.setSearchQueryFromHash = this.setSearchQueryFromHash.bind(this);
-
   }
 
   componentDidMount() {
-
     window.addEventListener('scroll', this.handleScroll);
     window.addEventListener('hashchange', this.handleHashchange);
 
@@ -53,47 +49,38 @@ class App extends Component {
 
     parseCSV()
       .then(results => {
-
         allbooks = results.data;
         fuse = initFuse(allbooks);
         this.setState({
           isLoadingData: false
         });
-
       })
       .then(this.getSearchResults)
       .catch(err => this.logError(err));
-
   }
 
   handleScroll() {
-
     const maxScrollTop = 250;
 
     const isTop =
-      document.body.scrollTop < maxScrollTop && document.documentElement.scrollTop < maxScrollTop;
+      document.body.scrollTop < maxScrollTop &&
+      document.documentElement.scrollTop < maxScrollTop;
 
     this.setState({ isTop });
-
   }
 
   handleChange(e) {
-
     this.setState({
       searchQuery: e.target.value
     });
-
   }
 
   handleHashchange() {
-
     this.setSearchQueryFromHash();
     this.getSearchResults();
-
   }
 
   handleSubmit(e) {
-
     e.preventDefault();
 
     window.location.hash = `/search/${encodeURIComponent(
@@ -103,29 +90,22 @@ class App extends Component {
     this.setState({
       isHomepage: false
     });
-
   }
 
   setSearchQueryFromHash() {
-
     const searchQueryRegex = /#\/search\/(.+)/;
     const encodedSearchQuery = window.location.hash.match(searchQueryRegex);
 
     if (encodedSearchQuery) {
-
       this.setState({
         isHomepage: false,
         searchQuery: decodeURIComponent(encodedSearchQuery[1])
       });
-
     }
-
   }
 
   getSearchResults() {
-
     if (!this.state.isLoadingData && this.state.searchQuery) {
-
       const fuseResults = fuse.search(this.state.searchQuery);
 
       const partialMatchScore = 0.05;
@@ -146,13 +126,10 @@ class App extends Component {
       };
 
       this.setState({ searchResults });
-
     }
-
   }
 
   render() {
-
     return (
       <div className="App">
         <header>
@@ -181,9 +158,7 @@ class App extends Component {
         </main>
       </div>
     );
-
   }
-
 }
 
 export default App;
