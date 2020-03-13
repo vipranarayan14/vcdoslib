@@ -6,7 +6,7 @@ import { ResultStats } from './ResultStats';
 
 import './Results.css';
 
-export const Results = ({ searchResults, isHomepage }) =>
+export const Results = ({ searchResults, isLoadingData, isHomepage }) =>
   searchResults.partialMatches.length ? (
     <div className="Results">
       <ResultStats searchResults={searchResults} />
@@ -17,10 +17,11 @@ export const Results = ({ searchResults, isHomepage }) =>
       <ResultBox searchResults={searchResults.partialMatches} />
     </div>
   ) : (
-    !isHomepage && <div className="Results not-found">No Results Found!</div>
+    !isHomepage && !isLoadingData && <div className="Results not-found">No Results Found!</div>
   );
 
 Results.propTypes = {
   searchResults: PropTypes.object.isRequired,
+  isLoadingData: PropTypes.bool.isRequired,
   isHomepage: PropTypes.bool.isRequired
 };

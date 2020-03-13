@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 
 /* components */
+import { LoadingMsg } from './components/LoadingMsg';
 import { Results } from './components/Results';
 import { ScrollToTop } from './components/ScrollToTop';
 import { SearchBox } from './components/SearchBox';
@@ -21,6 +22,7 @@ class App extends Component {
     super(props);
 
     this.state = {
+      isLoadingData: true,
       isTop: true,
       isHomepage: true,
       searchQuery: '',
@@ -49,6 +51,9 @@ class App extends Component {
       .then(results => {
         allbooks = results.data;
         fuse = initFuse(allbooks);
+        this.setState({
+          isLoadingData: false
+        });
       })
       .then(this.getSearchResults)
       .catch(err => this.logError(err));
@@ -97,7 +102,7 @@ class App extends Component {
   }
 
   getSearchResults() {
-    if (this.state.searchQuery) {
+    if (!this.state.isLoadingData && this.state.searchQuery) {
       const fuseResults = fuse.search(this.state.searchQuery);
 
       const firstPartialMatchIndex = fuseResults.findIndex(
@@ -135,8 +140,13 @@ class App extends Component {
           />
         </header>
         <main>
+          <LoadingMsg
+            isLoadingData={this.state.isLoadingData}
+            msg="Loading Books..."
+          />
           <Results
             searchResults={this.state.searchResults}
+            isLoadingData={this.state.isLoadingData}
             isHomepage={this.state.isHomepage}
           />
           <ScrollToTop isTop={this.state.isTop} />
