@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { subjects } from './subjects';
+import { subjects } from '../modules/subjects';
 
 const markMissing = rack => (rack === 'NA' ? ' missing' : '');
 
