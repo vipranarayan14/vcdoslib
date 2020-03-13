@@ -24,9 +24,9 @@ class App extends Component {
     super(props);
 
     this.state = {
+      isHomepage: true,
       isLoadingData: true,
       isTop: true,
-      isHomepage: true,
       searchQuery: '',
       searchResults: {
         exactMatches: [],
