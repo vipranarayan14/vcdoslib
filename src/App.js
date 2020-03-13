@@ -1,5 +1,6 @@
 /* libraries */
 import React, { Component } from 'react';
+import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
 
 /* components */
 import { LoadingMsg } from './components/LoadingMsg';
@@ -13,6 +14,7 @@ import { parseCSV } from './modules/parse-csv';
 
 /* stylesheets */
 import './App.css';
+import { Nav } from './components/Nav';
 
 let allbooks = [],
   fuse;
@@ -131,32 +133,45 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
-        <header>
-          <h1>Library</h1>
-          <h2>
-            Department of Sanskrit <br />
-            RKM Vivekananda College
-          </h2>
-          <SearchBox
-            searchQuery={this.state.searchQuery}
-            handleChange={this.handleChange}
-            handleSubmit={this.handleSubmit}
-          />
-        </header>
-        <main>
-          <LoadingMsg
-            isLoadingData={this.state.isLoadingData}
-            msg="Loading Books..."
-          />
-          <Results
-            searchResults={this.state.searchResults}
-            isLoadingData={this.state.isLoadingData}
-            isHomepage={this.state.isHomepage}
-          />
-          <ScrollToTop isTop={this.state.isTop} />
-        </main>
-      </div>
+      <Router>
+        <div className="App">
+          <header>
+            <div>
+              <h1>Library</h1>
+              <h2>
+                Department of Sanskrit <br />
+                RKM Vivekananda College
+              </h2>
+              <SearchBox
+                searchQuery={this.state.searchQuery}
+                handleChange={this.handleChange}
+                handleSubmit={this.handleSubmit}
+              />
+              <Nav />
+            </div>
+          </header>
+          <main>
+            <LoadingMsg
+              isLoadingData={this.state.isLoadingData}
+              msg="Loading Books..."
+            />
+            <Route path="/">
+              <Redirect to="/search" />
+            </Route>
+            <Route path="/search">
+              <Results
+                searchResults={this.state.searchResults}
+                isLoadingData={this.state.isLoadingData}
+                isHomepage={this.state.isHomepage}
+              />
+            </Route>
+            <Route path="/browse">
+              <h1>Browse</h1>
+            </Route>
+            <ScrollToTop isTop={this.state.isTop} />
+          </main>
+        </div>
+      </Router>
     );
   }
 }

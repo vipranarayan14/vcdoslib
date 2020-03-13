@@ -4,11 +4,9 @@
 
 .App header {
   text-align: center;
-  width: 100%;
   background-color: #5b9e4d;
   color: #fff;
-  padding: 10px;
-  min-height: 250px;
+  padding-top: 10px;
 }
 
 .App header h1 {
@@ -20,14 +18,19 @@
 }
 
 .App main {
-  margin: 0 auto;
   margin-bottom: 50px;
   width: 95%;
+}
+
+.App main,
+.App header > div {
+  margin: 0 auto;
   min-width: 250px;
 }
 
 @media (min-width: 650px) {
-  main {
+  .App main,
+  .App header > div {
     max-width: 650px;
   }
 }
