@@ -68,8 +68,10 @@ class App extends Component {
 
   handleScroll() {
 
+    const maxScrollTop = 250;
+
     const isTop =
-      document.body.scrollTop < 250 && document.documentElement.scrollTop < 250;
+      document.body.scrollTop < maxScrollTop && document.documentElement.scrollTop < maxScrollTop;
 
     this.setState({ isTop });
 
@@ -126,8 +128,10 @@ class App extends Component {
 
       const fuseResults = fuse.search(this.state.searchQuery);
 
+      const partialMatchScore = 0.05;
+
       const firstPartialMatchIndex = fuseResults.findIndex(
-        result => result.score > 0.05
+        result => result.score > partialMatchScore
       );
 
       /* using `firstPartialMatchIndex` directly will not give unexpected results. Tested! */
