@@ -1,12 +1,20 @@
 /* libraries */
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  Route,
+  Redirect,
+  Switch
+} from 'react-router-dom';
 
 /* components */
+import { Browse } from './components/Browse';
 import { LoadingMsg } from './components/LoadingMsg';
+import { Nav } from './components/Nav';
 import { Results } from './components/Results';
 import { ScrollToTop } from './components/ScrollToTop';
 import { SearchBox } from './components/SearchBox';
+import { Subjects } from './components/Subjects';
 
 /* modules */
 import { initFuse } from './modules/init-fuse';
@@ -14,9 +22,9 @@ import { parseCSV } from './modules/parse-csv';
 
 /* stylesheets */
 import './App.css';
-import { Nav } from './components/Nav';
+import { BooksBySubject } from './components/BooksBySubject';
 
-let allbooks = [],
+let allBooks = [],
   fuse;
 
 class App extends Component {
@@ -51,8 +59,8 @@ class App extends Component {
 
     parseCSV()
       .then(results => {
-        allbooks = results.data;
-        fuse = initFuse(allbooks);
+        allBooks = results.data;
+        fuse = initFuse(allBooks);
         this.setState({
           isLoadingData: false
         });
@@ -139,7 +147,8 @@ class App extends Component {
             <div>
               <h1>Library</h1>
               <h2>
-                Department of Sanskrit <br />
+                Department of Sanskrit
+                <br />
                 RKM Vivekananda College
               </h2>
               <SearchBox
@@ -155,19 +164,37 @@ class App extends Component {
               isLoadingData={this.state.isLoadingData}
               msg="Loading Books..."
             />
-            <Route path="/">
-              <Redirect to="/search" />
-            </Route>
-            <Route path="/search">
-              <Results
-                searchResults={this.state.searchResults}
-                isLoadingData={this.state.isLoadingData}
-                isHomepage={this.state.isHomepage}
+            <Switch>
+              <Route path="/browse/racks">
+                <h2>Browse by Rack</h2>
+              </Route>
+              <Route
+                path="/browse/subjects/:code"
+                component={() => <BooksBySubject allBooks={allBooks} />}
               />
-            </Route>
-            <Route path="/browse">
-              <h1>Browse</h1>
-            </Route>
+              <Route path="/browse/subjects" component={Subjects}></Route>
+
+              <Route path="/browse/authors">
+                <h2>Browse by Author</h2>
+              </Route>
+              <Route path="/browse/titles">
+                <h2>Browse by Title</h2>
+              </Route>
+              <Route path="/browse" component={Browse} />
+              <Route
+                path="/search"
+                render={() => (
+                  <Results
+                    searchResults={this.state.searchResults}
+                    isLoadingData={this.state.isLoadingData}
+                    isHomepage={this.state.isHomepage}
+                  />
+                )}
+              />
+              <Route path="/">
+                <Redirect to="/search" />
+              </Route>
+            </Switch>
             <ScrollToTop isTop={this.state.isTop} />
           </main>
         </div>
