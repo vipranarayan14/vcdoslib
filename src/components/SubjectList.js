@@ -5,7 +5,7 @@ import { Card } from './Card';
 
 import './List.css';
 
-import { subjects } from '../utils/subjects-list';
+import { subjectList } from '../utils/subject-list';
 
 export const SubjectList = () => {
   const match = useRouteMatch();
@@ -13,10 +13,10 @@ export const SubjectList = () => {
   return (
     <div className="List">
       <h2>Browse by Subject</h2>
-      {Object.keys(subjects).map((subjectCode, id) => (
+      {Object.keys(subjectList).map((subjectCode, id) => (
         <Link to={`${match.url}/${subjectCode}`} key={id}>
           <Card>
-            {subjects[subjectCode]} ({subjectCode})
+            {subjectList[subjectCode]} ({subjectCode})
           </Card>
         </Link>
       ))}

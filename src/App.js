@@ -14,7 +14,7 @@ import { Nav } from './components/Nav';
 import { Results } from './components/Results';
 import { ScrollToTop } from './components/ScrollToTop';
 import { SearchBox } from './components/SearchBox';
-import { Subjects } from './components/Subjects';
+import { SubjectList } from './components/SubjectList';
 
 /* modules */
 import { initFuse } from './modules/init-fuse';
@@ -172,7 +172,7 @@ class App extends Component {
                 path="/browse/subjects/:code"
                 component={() => <BooksBySubject allBooks={allBooks} />}
               />
-              <Route path="/browse/subjects" component={Subjects}></Route>
+              <Route path="/browse/subjects" component={SubjectList}></Route>
 
               <Route path="/browse/authors">
                 <h2>Browse by Author</h2>
