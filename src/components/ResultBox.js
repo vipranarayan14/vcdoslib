@@ -9,11 +9,13 @@ export const ResultBox = ({ searchResults }) =>
   Boolean(searchResults.length) && (
     <div className="ResultBox">
       {searchResults.map((result, i) => {
-        const accno = result.item['AccesionNo'];
-        const title = result.item['BookTitle'];
-        const author = result.item['Author'];
-        const subject = result.item['Classification'];
-        const rack = result.item['RackNo'];
+        const {
+          AccesionNo: accno,
+          BookTitle: title,
+          Author: author,
+          Classification: subject,
+          RackNo: rack
+        } = result.item;
 
         return (
           <div className={'book' + markMissing(rack)} key={i}>
