@@ -1,4 +1,4 @@
-export const subjects = {
+export const subjectList = {
   A: 'Vedas',
   A1: 'Vedas, Rig Veda',
   A2: 'Vedas, Yajur Veda',
@@ -30,6 +30,7 @@ export const subjects = {
   D3: 'Itihasa, Other Languages',
   D4: 'Itihasa, Miscellaneous',
   E: 'Puranas',
+  E1: 'Puranas, Miscellaneous',
   F: 'Poetry',
   F1: 'Poetry, Major',
   F2: 'Poetry, Lyrics and Minor Poems',
