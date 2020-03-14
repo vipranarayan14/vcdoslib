@@ -1,0 +1,42 @@
+.Book.missing {
+  background: #faa;
+}
+
+.Book div {
+  padding: 3px 0;
+}
+
+.Book > div {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.Book .col15 {
+  width: 15%;
+  padding: 0 5px;
+}
+
+.Book .col70 {
+  width: 70%;
+  padding: 10px;
+}
+
+.Book .title {
+  font-weight: bold;
+}
+
+.Book .author,
+.Book .subject {
+  color: #444;
+}
+
+.Book .subject {
+  font-size: 0.9rem;
+  font-style: italic;
+}
+
+.Book .accno,
+.Book .rack {
+  text-align: center;
+  min-width: 50px;
+}
