@@ -4,7 +4,7 @@
 
 .App header {
   text-align: center;
-  background-color: #5b9e4d;
+  background-color: var(--theme-bg);
   color: #fff;
   padding-top: 10px;
 }

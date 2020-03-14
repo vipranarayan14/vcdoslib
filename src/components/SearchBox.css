@@ -37,7 +37,7 @@
 }
 
 .SearchBox .search-submit input {
-  background-color: #f0860f;
+  background-color: var(--theme-accent);
   color: #fff;
   font-weight: bold;
   border-radius: 0 3px 3px 0;

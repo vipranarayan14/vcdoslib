@@ -14,5 +14,5 @@ nav .NavLink {
 
 nav .NavLink.active {
   color: #fff;
-  border-bottom: 5px solid #f0860f;
+  border-bottom: 5px solid var(--theme-accent);
 }
