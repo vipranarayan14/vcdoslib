@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { subjects } from '../modules/subjects';
+import { Card } from './Card';
 
 const markMissing = rack => (rack === 'NA' ? ' missing' : '');
 
@@ -18,7 +19,7 @@ export const ResultBox = ({ searchResults }) =>
         } = result.item;
 
         return (
-          <div className={'book' + markMissing(rack)} key={i}>
+          <Card className={'book' + markMissing(rack)} key={i}>
             <div className="col15">
               {!!accno && <div className="accno">{accno}</div>}
             </div>
@@ -32,7 +33,7 @@ export const ResultBox = ({ searchResults }) =>
             <div className="col15">
               <div className="rack">{rack}</div>
             </div>
-          </div>
+          </Card>
         );
       })}
     </div>
