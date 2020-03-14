@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { ResultBox } from './ResultBox';
+import { Books } from './Books';
 import { ResultStats } from './ResultStats';
 
 import './Results.css';
@@ -11,10 +11,10 @@ export const Results = ({ searchResults, isLoadingData, isHomepage }) =>
     <div className="Results">
       <ResultStats searchResults={searchResults} />
 
-      <ResultBox searchResults={searchResults.exactMatches} />
+      <Books list={searchResults.exactMatches.map(match => match.item)} />
 
       <p>Did you mean...</p>
-      <ResultBox searchResults={searchResults.partialMatches} />
+      <Books list={searchResults.partialMatches.map(match => match.item)} />
     </div>
   ) : (
     !isHomepage &&
