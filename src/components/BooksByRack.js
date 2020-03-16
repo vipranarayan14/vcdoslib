@@ -15,7 +15,7 @@ const filterBooksByRack = (rack, books) =>
       .includes(rack)
   );
 
-export const BooksByRack = ({ allBooks }) => {
+export const BooksByRack = ({ allBooks, isLoadingData }) => {
   const { rack } = useParams();
 
   const booksInRack = filterBooksByRack(rack, allBooks);
@@ -23,15 +23,17 @@ export const BooksByRack = ({ allBooks }) => {
   return (
     <div>
       <h3>Books in Rack: {rack} </h3>
-      {Boolean(booksInRack.length) ? (
-        <Books list={sortByTitle(booksInRack)} />
-      ) : (
-        <Notify msg="List not availabe!" />
-      )}
+      {!isLoadingData &&
+        (Boolean(booksInRack.length) ? (
+          <Books list={sortByTitle(booksInRack)} />
+        ) : (
+          <Notify msg="List not availabe!" />
+        ))}
     </div>
   );
 };
 
 BooksByRack.propTypes = {
-  allBooks: PropTypes.array.isRequired
+  allBooks: PropTypes.array.isRequired,
+  isLoadingData: PropTypes.bool.isRequired
 };
