@@ -18,9 +18,9 @@ import { RackList } from './components/RackList';
 import { BooksBySubject } from './components/BooksBySubject';
 import { BooksByRack } from './components/BooksByRack';
 
-/* modules */
-import { initFuse } from './modules/init-fuse';
-import { parseCSV } from './modules/parse-csv';
+/* utils */
+import { initFuse } from './utils/init-fuse';
+import { parseCSV } from './utils/parse-csv';
 
 /* stylesheets */
 import './App.css';
