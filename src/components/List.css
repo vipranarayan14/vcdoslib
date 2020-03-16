@@ -1,9 +1,41 @@
 .List a {
   text-decoration: none;
   color: #000;
-  font-weight: 700;
 }
 
-.List .Card {
-  padding: 15px;
+.List .Item {
+  padding: 10px 0;
+}
+
+.List .Item div {
+  padding: 3px 0;
+}
+
+.List .Item > div {
+  display: inline-block;
+  vertical-align: middle;
+  padding: 0 5px;
+}
+
+.List .Item .col-15 {
+  width: 15%;
+}
+
+.List .Item .col-85 {
+  width: 85%;
+}
+
+.List .Item .num {
+  text-align: center;
+  min-width: 50px;
+}
+
+.List .Item .title {
+  font-weight: bold;
+}
+
+.List .Item .desc {
+  color: #444;
+  font-size: 0.9rem;
+  line-height: 1.2rem;
 }
