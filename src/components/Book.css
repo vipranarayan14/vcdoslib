@@ -1,3 +1,6 @@
+.Book {
+  padding: 10px 0;
+}
 .Book.missing {
   background: #faa;
 }
@@ -9,16 +12,15 @@
 .Book > div {
   display: inline-block;
   vertical-align: middle;
+  padding: 0 5px;
 }
 
 .Book .col15 {
   width: 15%;
-  padding: 0 5px;
 }
 
 .Book .col70 {
   width: 70%;
-  padding: 10px;
 }
 
 .Book .title {
