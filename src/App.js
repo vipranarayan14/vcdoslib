@@ -14,6 +14,9 @@ import { Results } from './components/Results';
 import { ScrollToTop } from './components/ScrollToTop';
 import { SearchBox } from './components/SearchBox';
 import { SubjectList } from './components/SubjectList';
+import { RackList } from './components/RackList';
+import { BooksBySubject } from './components/BooksBySubject';
+import { BooksByRack } from './components/BooksByRack';
 
 /* modules */
 import { initFuse } from './modules/init-fuse';
@@ -158,18 +161,32 @@ class App extends Component {
               <Nav />
             </div>
           </header>
+
           <main>
-              <Notify msg="Loading books..." />
-            />
             <Switch>
-              <Route path="/browse/racks">
-                <h2>Browse by Rack</h2>
-              </Route>
+              <Route
+                path="/browse/racks/:rack"
+                component={() => (
+                  <BooksByRack
+                    allBooks={allBooks}
+                    isLoadingData={this.state.isLoadingData}
+            />
+                )}
+              />
+
+              <Route path="/browse/racks" component={RackList} />
+
               <Route
                 path="/browse/subjects/:code"
-                component={() => <BooksBySubject allBooks={allBooks} />}
+                component={() => (
+                  <BooksBySubject
+                    allBooks={allBooks}
+                    isLoadingData={this.state.isLoadingData}
+                  />
+                )}
               />
-              <Route path="/browse/subjects" component={SubjectList}></Route>
+
+              <Route path="/browse/subjects" component={SubjectList} />
 
               <Route path="/browse/authors">
                 <h2>Browse by Author</h2>
