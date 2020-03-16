@@ -12,11 +12,16 @@ export const SubjectList = () => {
 
   return (
     <div className="List">
-      <h2>Browse by Subject</h2>
-      {Object.keys(subjectList).map((subjectCode, id) => (
-        <Link to={`${match.url}/${subjectCode}`} key={id}>
-          <Card>
-            {subjectList[subjectCode]} ({subjectCode})
+      <h3>Browse by Subject</h3>
+      {Object.keys(subjectList).map((num, id) => (
+        <Link to={`${match.url}/${num}`} key={id}>
+          <Card className="Item">
+            <div className="col-15">
+              <div className="num">{num}</div>
+            </div>
+            <div className="col-85">
+              <div className="title">{subjectList[num]}</div>
+            </div>
           </Card>
         </Link>
       ))}
