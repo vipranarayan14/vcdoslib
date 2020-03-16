@@ -34,7 +34,7 @@ export const Book = ({
 );
 
 Book.propTypes = {
-  AccesionNo: PropTypes.number.isRequired,
+  AccesionNo: PropTypes.string.isRequired,
   Author: PropTypes.string.isRequired,
   BookTitle: PropTypes.string.isRequired,
   Classification: PropTypes.string.isRequired,
