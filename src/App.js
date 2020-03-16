@@ -96,9 +96,7 @@ class App extends Component {
   handleSubmit(e) {
     e.preventDefault();
 
-    window.location.hash = `/search/${encodeURIComponent(
-      this.state.searchQuery
-    )}`;
+    window.location.hash = `/${encodeURIComponent(this.state.searchQuery)}`;
 
     this.setState({
       isHomepage: false
@@ -106,7 +104,7 @@ class App extends Component {
   }
 
   setSearchQueryFromHash() {
-    const searchQueryRegex = /#\/search\/(.+)/;
+    const searchQueryRegex = /#\/(.+)/;
     const encodedSearchQuery = window.location.hash.match(searchQueryRegex);
 
     if (encodedSearchQuery) {
