@@ -2,9 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { Books } from './Books';
+import { Notify } from './Notify';
 import { ResultStats } from './ResultStats';
-
-import './Results.css';
 
 export const Results = ({ searchResults, isLoadingData, isHomepage }) =>
   searchResults.partialMatches.length ? (
@@ -17,8 +16,7 @@ export const Results = ({ searchResults, isLoadingData, isHomepage }) =>
       <Books list={searchResults.partialMatches.map(match => match.item)} />
     </div>
   ) : (
-    !isHomepage &&
-    !isLoadingData && <div className="Results not-found">No Results Found!</div>
+    !isHomepage && !isLoadingData && <Notify msg="No Results Found!" />
   );
 
 Results.propTypes = {
