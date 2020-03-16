@@ -25,6 +25,7 @@ import { parseCSV } from './utils/parse-csv';
 /* stylesheets */
 import './App.css';
 import { Notify } from './components/Notify';
+import { ScrollReset } from './components/ScrollReset';
 
 let allBooks = [],
   fuse;
@@ -144,6 +145,7 @@ class App extends Component {
   render() {
     return (
       <Router>
+        <ScrollReset />
         <div className="App">
           <header>
             <div>
@@ -170,7 +172,7 @@ class App extends Component {
                   <BooksByRack
                     allBooks={allBooks}
                     isLoadingData={this.state.isLoadingData}
-            />
+                  />
                 )}
               />
 
@@ -209,6 +211,8 @@ class App extends Component {
                 <Redirect to="/search" />
               </Route>
             </Switch>
+            {this.state.isLoadingData && <Notify msg="Loading books..." />}
+
             <ScrollToTop isTop={this.state.isTop} />
           </main>
         </div>
