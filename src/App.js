@@ -9,7 +9,6 @@ import {
 
 /* components */
 import { Browse } from './components/Browse';
-import { LoadingMsg } from './components/LoadingMsg';
 import { Nav } from './components/Nav';
 import { Results } from './components/Results';
 import { ScrollToTop } from './components/ScrollToTop';
@@ -22,7 +21,7 @@ import { parseCSV } from './modules/parse-csv';
 
 /* stylesheets */
 import './App.css';
-import { BooksBySubject } from './components/BooksBySubject';
+import { Notify } from './components/Notify';
 
 let allBooks = [],
   fuse;
@@ -160,9 +159,7 @@ class App extends Component {
             </div>
           </header>
           <main>
-            <LoadingMsg
-              isLoadingData={this.state.isLoadingData}
-              msg="Loading Books..."
+              <Notify msg="Loading books..." />
             />
             <Switch>
               <Route path="/browse/racks">
