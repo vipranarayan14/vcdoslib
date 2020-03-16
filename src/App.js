@@ -153,11 +153,13 @@ class App extends Component {
                 <br />
                 RKM Vivekananda College
               </h2>
-              <SearchBox
-                searchQuery={this.state.searchQuery}
-                handleChange={this.handleChange}
-                handleSubmit={this.handleSubmit}
-              />
+              <Route path="/search">
+                <SearchBox
+                  searchQuery={this.state.searchQuery}
+                  handleChange={this.handleChange}
+                  handleSubmit={this.handleSubmit}
+                />
+              </Route>
               <Nav />
             </div>
           </header>
