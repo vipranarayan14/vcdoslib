@@ -4,17 +4,20 @@ import { useParams } from 'react-router-dom';
 
 import { Books } from './Books';
 
-import { sortByTitle } from './../modules/sort-by-title';
+import { sortByTitle } from './../utils/sort-by-title';
 
 export const BooksBySubject = ({ allBooks }) => {
   const { code } = useParams();
 
   return (
-    <Books
-      list={sortByTitle(
-        allBooks.filter(book => book['Classification'].startsWith(code))
-      )}
-    />
+    <div>
+      <h3>Books in Subject: {code} </h3>
+      <Books
+        list={sortByTitle(
+          allBooks.filter(book => book['Classification'].startsWith(code))
+        )}
+      />
+    </div>
   );
 };
 
