@@ -3,13 +3,13 @@ import { Link, useRouteMatch } from 'react-router-dom';
 
 import { Card } from './Card';
 
-import './List.css';
+import './Browse.css';
 
 export const Browse = () => {
   const match = useRouteMatch();
 
   return (
-    <div className="List">
+    <div className="Browse">
       <Link to={`${match.url}/racks`}>
         <Card>By Rack</Card>
       </Link>
