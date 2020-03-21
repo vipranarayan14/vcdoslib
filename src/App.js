@@ -1,11 +1,6 @@
 /* libraries */
 import React, { Component } from 'react';
-import {
-  BrowserRouter as Router,
-  Route,
-  Redirect,
-  Switch
-} from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 /* components */
 import { Browse } from './components/Browse';
@@ -48,17 +43,11 @@ class App extends Component {
     this.logError = console.error; //eslint-disable-line no-console
     this.handleScroll = this.handleScroll.bind(this);
     this.handleChange = this.handleChange.bind(this);
-    this.handleHashchange = this.handleHashchange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.getSearchResults = this.getSearchResults.bind(this);
-    this.setSearchQueryFromHash = this.setSearchQueryFromHash.bind(this);
   }
 
   componentDidMount() {
     window.addEventListener('scroll', this.handleScroll);
-    window.addEventListener('hashchange', this.handleHashchange);
-
-    this.setSearchQueryFromHash();
 
     parseCSV()
       .then(results => {
@@ -68,7 +57,6 @@ class App extends Component {
           isLoadingData: false
         });
       })
-      .then(this.getSearchResults)
       .catch(err => this.logError(err));
   }
 
@@ -88,56 +76,12 @@ class App extends Component {
     });
   }
 
-  handleHashchange() {
-    this.setSearchQueryFromHash();
-    this.getSearchResults();
-  }
-
   handleSubmit(e) {
     e.preventDefault();
-
-    window.location.hash = `/${encodeURIComponent(this.state.searchQuery)}`;
 
     this.setState({
       isHomepage: false
     });
-  }
-
-  setSearchQueryFromHash() {
-    const searchQueryRegex = /#\/(.+)/;
-    const encodedSearchQuery = window.location.hash.match(searchQueryRegex);
-
-    if (encodedSearchQuery) {
-      this.setState({
-        isHomepage: false,
-        searchQuery: decodeURIComponent(encodedSearchQuery[1])
-      });
-    }
-  }
-
-  getSearchResults() {
-    if (!this.state.isLoadingData && this.state.searchQuery) {
-      const fuseResults = fuse.search(this.state.searchQuery);
-
-      const partialMatchScore = 0.05;
-
-      const firstPartialMatchIndex = fuseResults.findIndex(
-        result => result.score > partialMatchScore
-      );
-
-      /* using `firstPartialMatchIndex` directly will not give unexpected results. Tested! */
-      const exactMatches = fuseResults.slice(0, firstPartialMatchIndex);
-
-      /* Array.slice() will extract till the end if end is not specified. */
-      const partialMatches = fuseResults.slice(firstPartialMatchIndex);
-
-      const searchResults = {
-        exactMatches,
-        partialMatches
-      };
-
-      this.setState({ searchResults });
-    }
   }
 
   render() {
@@ -153,7 +97,14 @@ class App extends Component {
                 <br />
                 RKM Vivekananda College
               </h2>
-              <Route path="/search">
+              <Route exact path={['/', '/search']}>
+                <SearchBox
+                  searchQuery={this.state.searchQuery}
+                  handleChange={this.handleChange}
+                  handleSubmit={this.handleSubmit}
+                />
+              </Route>
+              <Route path="/search/:query">
                 <SearchBox
                   searchQuery={this.state.searchQuery}
                   handleChange={this.handleChange}
@@ -198,18 +149,19 @@ class App extends Component {
               </Route>
               <Route path="/browse" component={Browse} />
               <Route
-                path="/search"
+                path="/search/:query"
                 render={() => (
                   <Results
+                    fuse={fuse}
                     searchResults={this.state.searchResults}
                     isLoadingData={this.state.isLoadingData}
                     isHomepage={this.state.isHomepage}
                   />
                 )}
               />
-              <Route path="/">
+              {/* <Route path="/">
                 <Redirect to="/search" />
-              </Route>
+              </Route> */}
             </Switch>
             {this.state.isLoadingData && <Notify msg="Loading books..." />}
 
