@@ -4,6 +4,8 @@
   "private": true,
   "dependencies": {
     "ajv": "^6.5.4",
+    "fuse.js": "5.0.7-beta",
+    "papaparse": "5.1.1",
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
     "react-router-dom": "5.1.2",
@@ -27,8 +29,6 @@
   "devDependencies": {
     "eslint-config-prettier": "^6.10.0",
     "eslint-plugin-prettier": "^3.1.2",
-    "fuse.js": "3.2.1",
-    "papaparse": "4.6.1",
     "prettier": "^1.19.1"
   },
   "description": "Website for searching the catalogue of the library in the Department of Sanskrit, RKM Vivekananda College.",
