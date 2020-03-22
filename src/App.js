@@ -12,6 +12,7 @@ import { SubjectList } from './components/SubjectList';
 import { RackList } from './components/RackList';
 import { BooksBySubject } from './components/BooksBySubject';
 import { BooksByRack } from './components/BooksByRack';
+import { Logo } from './components/Logo';
 
 /* utils */
 import { initFuse } from './utils/init-fuse';
@@ -56,25 +57,22 @@ class App extends Component {
         <div className="App">
           <header>
             <div>
-              <h1>Library</h1>
-
+              <h1>
+                <Logo /> Library
+              </h1>
               <h2>
-                Department of Sanskrit
-                <br />
+                Department of Sanskrit, <br />
                 RKM Vivekananda College
               </h2>
-
               <Route
                 exact
                 path={['/', '/search']}
                 component={props => <SearchBox {...props} />}
               />
-
               <Route
                 path="/search/:query"
                 component={props => <SearchBox {...props} />}
               />
-
               <Nav />
             </div>
           </header>
