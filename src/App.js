@@ -23,32 +23,20 @@ import { Notify } from './components/Notify';
 import { ScrollReset } from './components/ScrollReset';
 
 let allBooks = [],
-  fuse;
+  fuse = {};
 
 class App extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      isHomepage: true,
-      isLoadingData: true,
-      isTop: true,
-      searchQuery: '',
-      searchResults: {
-        exactMatches: [],
-        partialMatches: []
-      }
+      isLoadingData: true
     };
 
     this.logError = console.error; //eslint-disable-line no-console
-    this.handleScroll = this.handleScroll.bind(this);
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   componentDidMount() {
-    window.addEventListener('scroll', this.handleScroll);
-
     parseCSV()
       .then(results => {
         allBooks = results.data;
@@ -60,57 +48,33 @@ class App extends Component {
       .catch(err => this.logError(err));
   }
 
-  handleScroll() {
-    const maxScrollTop = 250;
-
-    const isTop =
-      document.body.scrollTop < maxScrollTop &&
-      document.documentElement.scrollTop < maxScrollTop;
-
-    this.setState({ isTop });
-  }
-
-  handleChange(e) {
-    this.setState({
-      searchQuery: e.target.value
-    });
-  }
-
-  handleSubmit(e) {
-    e.preventDefault();
-
-    this.setState({
-      isHomepage: false
-    });
-  }
-
   render() {
     return (
       <Router>
         <ScrollReset />
+
         <div className="App">
           <header>
             <div>
               <h1>Library</h1>
+
               <h2>
                 Department of Sanskrit
                 <br />
                 RKM Vivekananda College
               </h2>
-              <Route exact path={['/', '/search']}>
-                <SearchBox
-                  searchQuery={this.state.searchQuery}
-                  handleChange={this.handleChange}
-                  handleSubmit={this.handleSubmit}
-                />
-              </Route>
-              <Route path="/search/:query">
-                <SearchBox
-                  searchQuery={this.state.searchQuery}
-                  handleChange={this.handleChange}
-                  handleSubmit={this.handleSubmit}
-                />
-              </Route>
+
+              <Route
+                exact
+                path={['/', '/search']}
+                component={props => <SearchBox {...props} />}
+              />
+
+              <Route
+                path="/search/:query"
+                component={props => <SearchBox {...props} />}
+              />
+
               <Nav />
             </div>
           </header>
@@ -144,28 +108,27 @@ class App extends Component {
               <Route path="/browse/authors">
                 <h2>Browse by Author</h2>
               </Route>
+
               <Route path="/browse/titles">
                 <h2>Browse by Title</h2>
               </Route>
+
               <Route path="/browse" component={Browse} />
+
               <Route
                 path="/search/:query"
                 render={() => (
                   <Results
                     fuse={fuse}
-                    searchResults={this.state.searchResults}
                     isLoadingData={this.state.isLoadingData}
-                    isHomepage={this.state.isHomepage}
                   />
                 )}
               />
-              {/* <Route path="/">
-                <Redirect to="/search" />
-              </Route> */}
             </Switch>
+
             {this.state.isLoadingData && <Notify msg="Loading books..." />}
 
-            <ScrollToTop isTop={this.state.isTop} />
+            <ScrollToTop />
           </main>
         </div>
       </Router>
