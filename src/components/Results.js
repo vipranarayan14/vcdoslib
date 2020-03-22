@@ -32,7 +32,7 @@ const getSearchResults = (query, fuse) => {
   }
 };
 
-export const Results = ({ isLoadingData, isHomepage, fuse, squery }) => {
+export const Results = ({ isLoadingData, fuse }) => {
   const { query = '' } = useParams();
 
   if (!isLoadingData) {
@@ -48,7 +48,7 @@ export const Results = ({ isLoadingData, isHomepage, fuse, squery }) => {
         <Books list={searchResults.partialMatches.map(match => match.item)} />
       </div>
     ) : (
-      !isHomepage && !isLoadingData && <Notify msg="No Results Found!" />
+      !isLoadingData && <Notify msg="No Results Found!" />
     );
   } else {
     return null;
@@ -56,7 +56,6 @@ export const Results = ({ isLoadingData, isHomepage, fuse, squery }) => {
 };
 
 Results.propTypes = {
-  // searchResults: PropTypes.object.isRequired,
-  isLoadingData: PropTypes.bool.isRequired,
-  isHomepage: PropTypes.bool.isRequired
+  fuse: PropTypes.object.isRequired,
+  isLoadingData: PropTypes.bool.isRequired
 };
