@@ -1,44 +1,69 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import './SearchBox.css';
 
-import { useHistory, useParams } from 'react-router-dom';
+export class SearchBox extends Component {
+  constructor(props) {
+    super(props);
 
-export const SearchBox = ({ searchQuery, handleChange, handleSubmit }) => {
-  const history = useHistory();
-  const params = useParams();
-  const queryFromRoute = params.query ? decodeURIComponent(params.query) : '';
+    this.state = {
+      query: ''
+    };
 
-  return (
-    <div className="SearchBox">
-      <form>
-        <span className="search-input">
-          <input
-            name="search"
-            type="search"
-            defaultValue={queryFromRoute}
-            onChange={handleChange}
-            autoFocus
-          />
-        </span>
-        <span className="search-submit">
-          <input
-            type="submit"
-            value="Search"
-            onClick={e => {
-              history.push(`/search/${encodeURIComponent(searchQuery)}`);
-              handleSubmit(e);
-            }}
-          />
-        </span>
-      </form>
-    </div>
-  );
-};
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  componentDidMount() {
+    const { params } = this.props.match;
+
+    const queryFromRoute = params.query ? decodeURIComponent(params.query) : '';
+
+    if (queryFromRoute) {
+      this.setState({
+        query: queryFromRoute
+      });
+    }
+  }
+
+  handleChange(e) {
+    this.setState({
+      query: e.target.value
+    });
+  }
+
+  handleSubmit(e) {
+    e.preventDefault();
+
+    const { history } = this.props;
+
+    history.push(`/search/${encodeURIComponent(this.state.query)}`);
+  }
+
+  render() {
+    return (
+      <div className="SearchBox">
+        <form>
+          <span className="search-input">
+            <input
+              name="search"
+              type="search"
+              defaultValue={this.state.query}
+              onChange={this.handleChange}
+              autoFocus
+            />
+          </span>
+          <span className="search-submit">
+            <input type="submit" value="Search" onClick={this.handleSubmit} />
+          </span>
+        </form>
+      </div>
+    );
+  }
+}
 
 SearchBox.propTypes = {
-  handleChange: PropTypes.func.isRequired,
-  handleSubmit: PropTypes.func.isRequired,
-  searchQuery: PropTypes.string.isRequired
+  history: PropTypes.object.isRequired,
+  match: PropTypes.object.isRequired
 };
