@@ -14,7 +14,7 @@ export const SubjectList = () => {
     <div className={styles.List}>
       <h3>Browse by Subject</h3>
 
-      {Object.keys(subjectList).map((num, id) => (
+      {Object.entries(subjectList).map(([num, title], id) => (
         <Link to={`${match.url}/${num}`} key={id}>
           <Card className={styles.item}>
             <div className={styles.col15}>
@@ -22,7 +22,7 @@ export const SubjectList = () => {
             </div>
 
             <div className={styles.col85}>
-              <div className={styles.title}>{subjectList[num]}</div>
+              <div className={styles.title}>{title}</div>
             </div>
           </Card>
         </Link>

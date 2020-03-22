@@ -14,26 +14,21 @@ export const RackList = () => {
     <div className={styles.List}>
       <h3>Browse by Rack</h3>
 
-      {Object.keys(rackList).map((num, id) => {
-        const rackDetails = rackList[num];
-        const { title, desc } = rackDetails;
+      {Object.entries(rackList).map(([num, { title, desc }], id) => (
+        <Link to={`${match.url}/${num}`} key={id}>
+          <Card className={styles.item}>
+            <div className={styles.col15}>
+              <div className={styles.num}>{num}</div>
+            </div>
 
-        return (
-          <Link to={`${match.url}/${num}`} key={id}>
-            <Card className={styles.item}>
-              <div className={styles.col15}>
-                <div className={styles.num}>{num}</div>
-              </div>
+            <div className={styles.col85}>
+              <div className={styles.title}>{title}</div>
 
-              <div className={styles.col85}>
-                <div className={styles.title}>{title}</div>
-
-                <div className={styles.desc}>{desc}</div>
-              </div>
-            </Card>
-          </Link>
-        );
-      })}
+              <div className={styles.desc}>{desc}</div>
+            </div>
+          </Card>
+        </Link>
+      ))}
     </div>
   );
 };
