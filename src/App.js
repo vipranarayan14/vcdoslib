@@ -115,10 +115,11 @@ class App extends Component {
 
               <Route
                 path="/search/:query"
-                render={() => (
+                render={props => (
                   <Results
                     fuse={fuse}
                     isLoadingData={this.state.isLoadingData}
+                    {...props}
                   />
                 )}
               />

@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import { Books } from './Books';
 import { Notify } from './Notify';
 import { ResultStats } from './ResultStats';
 
-import { useParams } from 'react-router-dom';
+import styles from './Results.module.css';
 
 const getSearchResults = (query, fuse) => {
   if (query) {
@@ -32,28 +32,71 @@ const getSearchResults = (query, fuse) => {
   }
 };
 
-export const Results = ({ isLoadingData, fuse }) => {
-  const { query = '' } = useParams();
+export class Results extends Component {
+  constructor(props) {
+    super(props);
 
-  if (!isLoadingData) {
-    const searchResults = getSearchResults(query, fuse);
+    this.state = {
+      showPartialMatches: false
+    };
 
-    return searchResults.partialMatches.length ? (
-      <div className="Results">
-        <ResultStats searchResults={searchResults} />
-
-        <Books list={searchResults.exactMatches.map(match => match.item)} />
-
-        <p>Did you mean...</p>
-        <Books list={searchResults.partialMatches.map(match => match.item)} />
-      </div>
-    ) : (
-      !isLoadingData && <Notify msg="No Results Found!" />
+    this.handleShowPartialMatchesClick = this.handleShowPartialMatchesClick.bind(
+      this
     );
-  } else {
-    return null;
   }
-};
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.match.params.query !== this.props.match.params.query) {
+      this.setState({
+        showPartialMatches: false
+      });
+    }
+  }
+
+  handleShowPartialMatchesClick() {
+    this.setState({
+      showPartialMatches: true
+    });
+  }
+
+  render() {
+    const { query = '' } = this.props.match.params;
+
+    const { isLoadingData, fuse } = this.props;
+
+    if (!isLoadingData) {
+      const searchResults = getSearchResults(query, fuse);
+
+      return searchResults.partialMatches.length ? (
+        <div className={styles.Results}>
+          <ResultStats searchResults={searchResults} />
+
+          <Books list={searchResults.exactMatches.map(match => match.item)} />
+
+          {!this.state.showPartialMatches ? (
+            <button
+              className={styles.showPartialMatchesBtn}
+              onClick={this.handleShowPartialMatchesClick}
+            >
+              Show similar results...
+            </button>
+          ) : (
+            <>
+              <h3 className={styles.partialMatchesHeading}>Similar Results</h3>
+              <Books
+                list={searchResults.partialMatches.map(match => match.item)}
+              />
+            </>
+          )}
+        </div>
+      ) : (
+        !isLoadingData && <Notify msg="No Results Found!" />
+      );
+    } else {
+      return null;
+    }
+  }
+}
 
 Results.propTypes = {
   fuse: PropTypes.object.isRequired,
