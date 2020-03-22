@@ -16,13 +16,11 @@ export class SearchBox extends Component {
   }
 
   componentDidMount() {
-    const { params } = this.props.match;
+    const { query = '' } = this.props.match.params;
 
-    const queryFromRoute = params.query ? decodeURIComponent(params.query) : '';
-
-    if (queryFromRoute) {
+    if (query) {
       this.setState({
-        query: queryFromRoute
+        query: decodeURIComponent(query)
       });
     }
   }
