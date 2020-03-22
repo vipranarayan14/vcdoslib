@@ -25,18 +25,18 @@
   font-size: 1.1rem;
 }
 
-.SearchBox .search-input input {
+.SearchBox .searchInput input {
   width: 100%;
   min-width: 250px;
   background-color: #fff;
   border-radius: 3px 0 0 3px;
 }
 
-.SearchBox .search-submit {
+.SearchBox .searchSubmit {
   width: 80px;
 }
 
-.SearchBox .search-submit input {
+.SearchBox .searchSubmit input {
   background-color: var(--theme-accent);
   color: #fff;
   font-weight: bold;

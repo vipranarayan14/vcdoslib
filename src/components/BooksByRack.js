@@ -23,6 +23,7 @@ export const BooksByRack = ({ allBooks, isLoadingData }) => {
   return (
     <div>
       <h3>Books in Rack: {rack} </h3>
+
       {!isLoadingData &&
         (Boolean(booksInRack.length) ? (
           <Books list={sortByTitle(booksInRack)} />

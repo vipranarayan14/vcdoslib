@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import './ScrollToTop.css';
+import styles from './ScrollToTop.module.css';
 
 const handleScrollToTopClick = () => {
   document.body.scrollTop = 0; // For Safari
@@ -35,7 +35,7 @@ export class ScrollToTop extends Component {
   render() {
     return (
       !this.state.isTop && (
-        <div className="ScrollToTop" onClick={handleScrollToTopClick}>
+        <div className={styles.ScrollToTop} onClick={handleScrollToTopClick}>
           Top
         </div>
       )

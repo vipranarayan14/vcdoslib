@@ -19,7 +19,7 @@ import { initFuse } from './utils/init-fuse';
 import { parseCSV } from './utils/parse-csv';
 
 /* stylesheets */
-import './App.css';
+import styles from './App.module.css';
 import { Notify } from './components/Notify';
 import { ScrollReset } from './components/ScrollReset';
 
@@ -54,7 +54,7 @@ class App extends Component {
       <Router>
         <ScrollReset />
 
-        <div className="App">
+        <div className={styles.App}>
           <header>
             <div>
               <h1>

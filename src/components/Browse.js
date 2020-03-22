@@ -3,27 +3,27 @@ import { Link, useRouteMatch } from 'react-router-dom';
 
 import { Card } from './Card';
 
-import './Browse.css';
+import styles from './Browse.module.css';
 
 export const Browse = () => {
   const match = useRouteMatch();
 
   return (
-    <div className="Browse">
+    <div className={styles.Browse}>
       <Link to={`${match.url}/racks`}>
-        <Card>By Rack</Card>
+        <Card className={styles.Card}>By Rack</Card>
       </Link>
 
       <Link to={`${match.url}/subjects`}>
-        <Card> By Subject</Card>
+        <Card className={styles.Card}> By Subject</Card>
       </Link>
 
       <Link to={`${match.url}/authors`}>
-        <Card>By Author</Card>
+        <Card className={styles.Card}>By Author</Card>
       </Link>
 
       <Link to={`${match.url}/titles`}>
-        <Card>By Title</Card>
+        <Card className={styles.Card}>By Title</Card>
       </Link>
     </div>
   );

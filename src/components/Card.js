@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import './Card.css';
+import styles from './Card.module.css';
 
 export const Card = ({ children, className }) => (
-  <div className={'Card ' + className}>{children}</div>
+  <div className={`${className} ${styles.Card}`}>{children}</div>
 );
 
 Card.propTypes = {

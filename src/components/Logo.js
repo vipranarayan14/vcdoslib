@@ -1,7 +1,7 @@
 import React from 'react';
 
-import './Logo.css';
+import styles from './Logo.module.css';
 
 import logo from './../logo.svg';
 
-export const Logo = () => <img className="Logo" src={logo} alt="Logo" />;
+export const Logo = () => <img className={styles.Logo} src={logo} alt="Logo" />;

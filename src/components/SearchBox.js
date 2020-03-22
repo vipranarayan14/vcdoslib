@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import './SearchBox.css';
+import styles from './SearchBox.module.css';
 
 export class SearchBox extends Component {
   constructor(props) {
@@ -43,9 +43,9 @@ export class SearchBox extends Component {
 
   render() {
     return (
-      <div className="SearchBox">
+      <div className={styles.SearchBox}>
         <form>
-          <span className="search-input">
+          <span className={styles.searchInput}>
             <input
               name="search"
               type="search"
@@ -54,7 +54,7 @@ export class SearchBox extends Component {
               autoFocus
             />
           </span>
-          <span className="search-submit">
+          <span className={styles.searchSubmit}>
             <input type="submit" value="Search" onClick={this.handleSubmit} />
           </span>
         </form>

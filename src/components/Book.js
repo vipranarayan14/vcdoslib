@@ -5,9 +5,9 @@ import { Card } from './Card';
 
 import { subjectList } from '../utils/subject-list';
 
-import './Book.css';
+import styles from './Book.module.css';
 
-const markMissing = rack => (rack === 'NA' ? ' missing' : '');
+const markMissing = rack => (rack === 'NA' ? styles.missing : '');
 
 export const Book = ({
   AccesionNo: accno,
@@ -16,19 +16,25 @@ export const Book = ({
   Classification: subject,
   RackNo: rack
 }) => (
-  <Card className={'Book' + markMissing(rack)}>
-    <div className="col15">
-      {!!accno && <div className="accno">{accno}</div>}
+  <Card className={`${styles.Book} ${markMissing(rack)}`}>
+    <div className={styles.col15}>
+      {!!accno && <div className={styles.accno}>{accno}</div>}
     </div>
-    <div className="col70">
-      <div className="title">{title}</div>
-      {!!author && <div className="author">by {author}</div>}
+
+    <div className={styles.col70}>
+      <div className={styles.title}>{title}</div>
+
+      {!!author && <div className={styles.author}>by {author}</div>}
+
       {!!subject && (
-        <div className="subject">{`${subjectList[subject]} (${subject})`}</div>
+        <div className={styles.subject}>
+          {`${subjectList[subject]} (${subject})`}
+        </div>
       )}
     </div>
-    <div className="col15">
-      <div className="rack">{rack}</div>
+
+    <div className={styles.col15}>
+      <div className={styles.rack}>{rack}</div>
     </div>
   </Card>
 );

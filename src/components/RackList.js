@@ -5,26 +5,30 @@ import { Card } from './Card';
 
 import { rackList } from '../utils/rack-list';
 
-import './List.css';
+import styles from './List.module.css';
 
 export const RackList = () => {
   const match = useRouteMatch();
 
   return (
-    <div className="List">
+    <div className={styles.List}>
       <h3>Browse by Rack</h3>
+
       {Object.keys(rackList).map((num, id) => {
         const rackDetails = rackList[num];
         const { title, desc } = rackDetails;
+
         return (
           <Link to={`${match.url}/${num}`} key={id}>
-            <Card className="Item">
-              <div className="col-15">
-                <div className="num">{num}</div>
+            <Card className={styles.item}>
+              <div className={styles.col15}>
+                <div className={styles.num}>{num}</div>
               </div>
-              <div className="col-85">
-                <div className="title">{title}</div>
-                <div className="desc">{desc}</div>
+
+              <div className={styles.col85}>
+                <div className={styles.title}>{title}</div>
+
+                <div className={styles.desc}>{desc}</div>
               </div>
             </Card>
           </Link>

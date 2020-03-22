@@ -1,14 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import './ResultStats.css';
+import styles from './ResultStats.module.css';
 
 export const ResultStats = ({ searchResults }) => {
   const totalExactMatches = searchResults.exactMatches.length;
   const totalPartialMatches = searchResults.partialMatches.length;
 
   return (
-    <div className="ResultStats">
+    <div className={styles.ResultStats}>
       <span>
         Found&nbsp;{totalExactMatches || 'no'}
         &nbsp;exact match{totalExactMatches > 1 && 'es'}
