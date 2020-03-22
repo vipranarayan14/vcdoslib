@@ -7,6 +7,11 @@
   padding: 10px 0;
 }
 
+.List .item.extraVerticalPadding {
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+
 .List .item div {
   padding: 3px 0;
 }
