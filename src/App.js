@@ -3,16 +3,18 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 /* components */
+import { BooksByRack } from './components/BooksByRack';
+import { BooksBySubject } from './components/BooksBySubject';
 import { Browse } from './components/Browse';
+import { Logo } from './components/Logo';
 import { Nav } from './components/Nav';
+import { Notify } from './components/Notify';
+import { RackList } from './components/RackList';
 import { Results } from './components/Results';
+import { ScrollReset } from './components/ScrollReset';
 import { ScrollToTop } from './components/ScrollToTop';
 import { SearchBox } from './components/SearchBox';
 import { SubjectList } from './components/SubjectList';
-import { RackList } from './components/RackList';
-import { BooksBySubject } from './components/BooksBySubject';
-import { BooksByRack } from './components/BooksByRack';
-import { Logo } from './components/Logo';
 
 /* utils */
 import { initFuse } from './utils/init-fuse';
@@ -20,8 +22,6 @@ import { parseCSV } from './utils/parse-csv';
 
 /* stylesheets */
 import styles from './App.module.css';
-import { Notify } from './components/Notify';
-import { ScrollReset } from './components/ScrollReset';
 
 let allBooks = [],
   fuse = {};
