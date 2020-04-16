@@ -66,13 +66,10 @@ class App extends Component {
               </h2>
               <Route
                 exact
-                path={['/', '/search']}
+                path="/"
                 component={props => <SearchBox {...props} />}
               />
-              <Route
-                path="/search/:query"
-                component={props => <SearchBox {...props} />}
-              />
+
               <Nav />
             </div>
           </header>
@@ -114,7 +111,7 @@ class App extends Component {
               <Route path="/browse" component={Browse} />
 
               <Route
-                path="/search/:query"
+                path="/"
                 render={props => (
                   <Results
                     fuse={fuse}

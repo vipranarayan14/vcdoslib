@@ -6,7 +6,8 @@ import styles from './Nav.module.css';
 export const Nav = () => (
   <nav className={styles.Nav}>
     <NavLink
-      to="/search"
+      exact
+      to="/"
       className={styles.NavLink}
       activeClassName={styles.active}
     >

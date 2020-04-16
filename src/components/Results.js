@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
+import { getSearchQuery } from '../utils/get-search-query';
+
 import { Books } from './Books';
 import { Notify } from './Notify';
 import { ResultStats } from './ResultStats';
@@ -46,7 +48,7 @@ export class Results extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (prevProps.match.params.query !== this.props.match.params.query) {
+    if (prevProps.location.search !== this.props.location.search) {
       this.setState({
         showPartialMatches: false
       });
@@ -60,11 +62,11 @@ export class Results extends Component {
   }
 
   render() {
-    const { query = '' } = this.props.match.params;
+    const query = getSearchQuery(this.props.location.search);
 
     const { isLoadingData, fuse } = this.props;
 
-    if (!isLoadingData) {
+    if (!isLoadingData && query) {
       const searchResults = getSearchResults(query, fuse);
 
       return searchResults.partialMatches.length ? (

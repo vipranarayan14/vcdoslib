@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
+import { getSearchQuery } from '../utils/get-search-query';
+
 import styles from './SearchBox.module.css';
 
 export class SearchBox extends Component {
@@ -16,7 +18,7 @@ export class SearchBox extends Component {
   }
 
   componentDidMount() {
-    const { query = '' } = this.props.match.params;
+    const query = getSearchQuery(this.props.location.search);
 
     if (query) {
       this.setState({
@@ -36,7 +38,7 @@ export class SearchBox extends Component {
 
     const { history } = this.props;
 
-    history.push(`/search/${encodeURIComponent(this.state.query)}`);
+    history.push(`?search=${encodeURIComponent(this.state.query)}`);
   }
 
   render() {
@@ -63,5 +65,5 @@ export class SearchBox extends Component {
 
 SearchBox.propTypes = {
   history: PropTypes.object.isRequired,
-  match: PropTypes.object.isRequired
+  location: PropTypes.object.isRequired
 };
