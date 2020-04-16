@@ -18,13 +18,13 @@ export const Browse = () => {
         <Card className={styles.Card}> By Subject</Card>
       </Link>
 
-      <Link to={`${match.url}/authors`}>
+      {/* <Link to={`${match.url}/authors`}>
         <Card className={styles.Card}>By Author</Card>
       </Link>
 
       <Link to={`${match.url}/titles`}>
         <Card className={styles.Card}>By Title</Card>
-      </Link>
+      </Link> */}
     </div>
   );
 };
