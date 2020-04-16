@@ -52,9 +52,9 @@ class App extends Component {
   render() {
     return (
       <Router>
-        <ScrollReset />
-
         <div className={styles.App}>
+          <ScrollReset />
+
           <header>
             <div>
               <h1>
