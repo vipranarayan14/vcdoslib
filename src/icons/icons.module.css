@@ -1,0 +1,15 @@
+.Icons {
+  vertical-align: text-bottom;
+}
+
+.SearchIcon {
+  fill: var(--theme-accent);
+  stroke: var(--theme-accent);
+  height: 26px;
+  width: 26px;
+}
+
+.GithubIcon {
+  height: 16px;
+  width: 16px;
+}
