@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { BooksByRack } from './components/BooksByRack';
 import { BooksBySubject } from './components/BooksBySubject';
 import { Browse } from './components/Browse';
+import { Footer } from './components/Footer';
 import { Logo } from './components/Logo';
 import { Nav } from './components/Nav';
 import { Notify } from './components/Notify';
@@ -126,6 +127,8 @@ class App extends Component {
 
             <ScrollToTop />
           </main>
+
+          <Footer />
         </div>
       </Router>
     );
