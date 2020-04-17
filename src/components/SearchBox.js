@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 
 import { getSearchQuery } from '../utils/get-search-query';
 
+import { SearchIcon } from '../icons/icons';
+
 import styles from './SearchBox.module.css';
 
 export class SearchBox extends Component {
@@ -36,27 +38,33 @@ export class SearchBox extends Component {
   handleSubmit(e) {
     e.preventDefault();
 
-    const { history } = this.props;
+    const { query } = this.state;
 
-    history.push(`?search=${encodeURIComponent(this.state.query)}`);
+    if (query) {
+      this.props.history.push(`?search=${encodeURIComponent(query)}`);
+    }
   }
 
   render() {
     return (
       <div className={styles.SearchBox}>
-        <form>
-          <span className={styles.searchInput}>
-            <input
-              name="search"
-              type="search"
-              defaultValue={this.state.query}
-              onChange={this.handleChange}
-              autoFocus
-            />
-          </span>
-          <span className={styles.searchSubmit}>
-            <input type="submit" value="Search" onClick={this.handleSubmit} />
-          </span>
+        <form className={styles.searchForm}>
+          <input
+            className={styles.searchInput}
+            type="search"
+            name="search"
+            defaultValue={this.state.query}
+            onChange={this.handleChange}
+            autoFocus
+          />
+          <button
+            className={styles.searchSubmit}
+            type="submit"
+            name="submit"
+            onClick={this.handleSubmit}
+          >
+            <SearchIcon className={styles.SearchIcon} />
+          </button>
         </form>
       </div>
     );
