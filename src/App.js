@@ -7,7 +7,7 @@ import { BooksByRack } from './components/BooksByRack';
 import { BooksBySubject } from './components/BooksBySubject';
 import { Browse } from './components/Browse';
 import { Footer } from './components/Footer';
-import { Logo } from './components/Logo';
+import { Logo } from './icons/icons';
 import { Nav } from './components/Nav';
 import { Notify } from './components/Notify';
 import { RackList } from './components/RackList';
