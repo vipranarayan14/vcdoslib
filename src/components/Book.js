@@ -10,11 +10,11 @@ import styles from './Book.module.css';
 const markMissing = rack => (rack === 'NA' ? styles.missing : '');
 
 export const Book = ({
-  AccesionNo: accno,
+  'Acc No': accno,
   Author: author,
-  BookTitle: title,
-  Classification: subject,
-  RackNo: rack
+  Title: title,
+  Subject: subject,
+  Rack: rack
 }) => (
   <Card className={`${styles.Book} ${markMissing(rack)}`}>
     <div className={styles.col15}>

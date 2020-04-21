@@ -16,7 +16,7 @@ export const BooksBySubject = ({ allBooks, isLoadingData }) => {
       {!isLoadingData && (
         <Books
           list={sortByTitle(
-            allBooks.filter(book => book['Classification'].startsWith(code))
+            allBooks.filter(book => book['Subject'].startsWith(code))
           )}
         />
       )}

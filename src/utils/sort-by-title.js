@@ -1,8 +1,8 @@
 const compareTitle = (a, b) => {
   const articlesRegex = /^(a|an|the)\s+/i;
 
-  const aTitle = a['BookTitle'].replace(articlesRegex, '');
-  const bTitle = b['BookTitle'].replace(articlesRegex, '');
+  const aTitle = a['Title'].replace(articlesRegex, '');
+  const bTitle = b['Title'].replace(articlesRegex, '');
 
   if (aTitle < bTitle) {
     return -1;

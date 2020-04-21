@@ -48,5 +48,6 @@ export const subjectList = {
   O: 'Textbooks',
   P: 'Journal and Felicitation Volumes',
   R: 'Research and Reference Books',
-  S: 'Tales and Fables'
+  S: 'Tales and Fables',
+  NA: 'Not classified'
 };

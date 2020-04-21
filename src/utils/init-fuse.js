@@ -7,7 +7,7 @@ const options = {
   includeScore: true,
   keys: [
     {
-      name: 'BookTitle',
+      name: 'Title',
       weight: 0.5
     },
     {
@@ -15,7 +15,7 @@ const options = {
       weight: 0.4
     },
     {
-      name: 'AccesionNo',
+      name: 'Acc No',
       weight: 0.1
     }
   ],

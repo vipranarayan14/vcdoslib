@@ -9,7 +9,7 @@ import { Notify } from './Notify';
 
 const filterBooksByRack = (rack, books) =>
   books.filter(book =>
-    book['RackNo']
+    book['Rack']
       .replace(/\s/g, '')
       .split(',')
       .includes(rack)
