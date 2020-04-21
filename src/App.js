@@ -24,9 +24,6 @@ import { parseCSV } from './utils/parse-csv';
 /* stylesheets */
 import styles from './App.module.css';
 
-let allBooks = [],
-  fuse = {};
-
 class App extends Component {
   constructor(props) {
     super(props);
@@ -35,14 +32,19 @@ class App extends Component {
       isLoadingData: true
     };
 
+    this.allBooks = [];
+    this.fuse = {};
+
     this.logError = console.error; //eslint-disable-line no-console
   }
 
   componentDidMount() {
     parseCSV()
       .then(results => {
-        allBooks = results.data;
-        fuse = initFuse(allBooks);
+        this.allBooks = results.data;
+        console.log(this.allBooks);
+
+        this.fuse = initFuse(this.allBooks);
         this.setState({
           isLoadingData: false
         });
@@ -81,7 +83,7 @@ class App extends Component {
                 path="/browse/racks/:rack"
                 component={() => (
                   <BooksByRack
-                    allBooks={allBooks}
+                    allBooks={this.allBooks}
                     isLoadingData={this.state.isLoadingData}
                   />
                 )}
@@ -93,7 +95,7 @@ class App extends Component {
                 path="/browse/subjects/:code"
                 component={() => (
                   <BooksBySubject
-                    allBooks={allBooks}
+                    allBooks={this.allBooks}
                     isLoadingData={this.state.isLoadingData}
                   />
                 )}
@@ -115,7 +117,7 @@ class App extends Component {
                 path="/"
                 render={props => (
                   <Results
-                    fuse={fuse}
+                    fuse={this.fuse}
                     isLoadingData={this.state.isLoadingData}
                     {...props}
                   />
