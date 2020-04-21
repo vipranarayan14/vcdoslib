@@ -17,11 +17,9 @@ export const Book = ({
   Rack: rack
 }) => (
   <Card className={`${styles.Book} ${markMissing(rack)}`}>
-    <div className={styles.col15}>
-      {!!accno && <div className={styles.accno}>{accno}</div>}
-    </div>
+    {!!accno && <div className={styles.accno}>{accno}</div>}
 
-    <div className={styles.col70}>
+    <div className={styles.details}>
       <div className={styles.title}>{title}</div>
 
       {!!author && <div className={styles.author}>by {author}</div>}
@@ -33,9 +31,7 @@ export const Book = ({
       )}
     </div>
 
-    <div className={styles.col15}>
-      <div className={styles.rack}>{rack}</div>
-    </div>
+    <div className={styles.rack}>{rack}</div>
   </Card>
 );
 
