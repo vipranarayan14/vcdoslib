@@ -9,7 +9,6 @@ import { Browse } from './components/Browse';
 import { Footer } from './components/Footer';
 import { Logo } from './icons/icons';
 import { Nav } from './components/Nav';
-import { Notify } from './components/Notify';
 import { RackList } from './components/RackList';
 import { Results } from './components/Results';
 import { ScrollReset } from './components/ScrollReset';
@@ -17,41 +16,10 @@ import { ScrollToTop } from './components/ScrollToTop';
 import { SearchBox } from './components/SearchBox';
 import { SubjectList } from './components/SubjectList';
 
-/* utils */
-import { initFuse } from './utils/init-fuse';
-import { parseCSV } from './utils/parse-csv';
-
 /* stylesheets */
 import styles from './App.module.css';
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      isLoadingData: true
-    };
-
-    this.allBooks = [];
-    this.fuse = {};
-
-    this.logError = console.error; //eslint-disable-line no-console
-  }
-
-  componentDidMount() {
-    parseCSV()
-      .then(results => {
-        this.allBooks = results.data;
-        console.log(this.allBooks);
-
-        this.fuse = initFuse(this.allBooks);
-        this.setState({
-          isLoadingData: false
-        });
-      })
-      .catch(err => this.logError(err));
-  }
-
   render() {
     return (
       <Router>
@@ -79,27 +47,11 @@ class App extends Component {
 
           <main>
             <Switch>
-              <Route
-                path="/browse/racks/:rack"
-                component={() => (
-                  <BooksByRack
-                    allBooks={this.allBooks}
-                    isLoadingData={this.state.isLoadingData}
-                  />
-                )}
-              />
+              <Route path="/browse/racks/:rack" component={BooksByRack} />
 
               <Route path="/browse/racks" component={RackList} />
 
-              <Route
-                path="/browse/subjects/:code"
-                component={() => (
-                  <BooksBySubject
-                    allBooks={this.allBooks}
-                    isLoadingData={this.state.isLoadingData}
-                  />
-                )}
-              />
+              <Route path="/browse/subjects/:code" component={BooksBySubject} />
 
               <Route path="/browse/subjects" component={SubjectList} />
 
@@ -115,18 +67,9 @@ class App extends Component {
 
               <Route
                 path="/"
-                render={props => (
-                  <Results
-                    fuse={this.fuse}
-                    isLoadingData={this.state.isLoadingData}
-                    {...props}
-                  />
-                )}
+                render={props => <Results location={props.location} />}
               />
             </Switch>
-
-            {this.state.isLoadingData && <Notify msg="Loading books..." />}
-
             <ScrollToTop />
           </main>
 
