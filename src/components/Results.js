@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import { getSearchQuery } from '../utils/get-search-query';
-import { initFuse } from '../utils/init-fuse';
-import { loadBooks } from '../utils/load-books';
 
 import { Books } from './Books';
 import { Notify } from './Notify';
@@ -26,7 +24,7 @@ const compareTitle = (a, b) => {
   return 0;
 };
 
-const getSearchResults = (query, fuse) => {
+const getSearchResults = fuse => query => {
   if (query) {
     const fuseResults = fuse.search(query);
 
@@ -56,38 +54,17 @@ export class Results extends Component {
     super(props);
 
     this.state = {
-      isLoadingBooks: true,
       showPartialMatches: false
     };
-
-    this.allBooks = [];
-    this.fuse = {};
-
-    this.logError = console.error; //eslint-disable-line no-console
 
     this.handleShowPartialMatchesClick = this.handleShowPartialMatchesClick.bind(
       this
     );
-  }
 
-  componentDidMount() {
-    loadBooks()
-      .then(({ data }) => {
-        this.allBooks = data;
-
-        this.fuse = initFuse(this.allBooks);
-        this.setState({
-          isLoadingBooks: false
-        });
-      })
-      .catch(this.logError);
+    this.fuse = {};
   }
 
   componentDidUpdate(prevProps) {
-    if (this.props.filter) {
-      return;
-    }
-
     if (prevProps.location.search !== this.props.location.search) {
       this.setState({
         showPartialMatches: false
@@ -102,14 +79,16 @@ export class Results extends Component {
   }
 
   render() {
-    if (this.state.isLoadingBooks) {
+    if (this.props.isLoadingBooks) {
       return <Notify msg="Loading books..." />;
     }
 
     const { filter } = this.props;
 
     if (filter) {
-      return <Books list={this.allBooks.filter(filter).sort(compareTitle)} />;
+      return (
+        <Books list={this.props.books.filter(filter).sort(compareTitle)} />
+      );
     }
 
     const query = getSearchQuery(this.props.location.search);
@@ -118,7 +97,7 @@ export class Results extends Component {
       return null;
     }
 
-    const searchResults = getSearchResults(query, this.fuse);
+    const searchResults = getSearchResults(this.props.fuse)(query);
 
     if (!searchResults.partialMatches.length) {
       return <Notify msg="No Results Found!" />;

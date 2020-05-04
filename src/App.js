@@ -2,6 +2,8 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
+import { BooksProvider } from './components/BooksProvider';
+
 /* components */
 import { BooksByRack } from './components/BooksByRack';
 import { BooksBySubject } from './components/BooksBySubject';
@@ -46,30 +48,40 @@ class App extends Component {
           </header>
 
           <main>
-            <Switch>
-              <Route path="/browse/racks/:rack" component={BooksByRack} />
+            <BooksProvider>
+              {booksProps => (
+                <Switch>
+                  <Route path="/browse/racks/:rack">
+                    <BooksByRack {...booksProps} />
+                  </Route>
 
-              <Route path="/browse/racks" component={RackList} />
+                  <Route path="/browse/racks" component={RackList} />
 
-              <Route path="/browse/subjects/:code" component={BooksBySubject} />
+                  <Route path="/browse/subjects/:code">
+                    <BooksBySubject {...booksProps} />
+                  </Route>
 
-              <Route path="/browse/subjects" component={SubjectList} />
+                  <Route path="/browse/subjects" component={SubjectList} />
 
-              <Route path="/browse/authors">
-                <h2>Browse by Author</h2>
-              </Route>
+                  <Route path="/browse/authors">
+                    <h2>Browse by Author</h2>
+                  </Route>
 
-              <Route path="/browse/titles">
-                <h2>Browse by Title</h2>
-              </Route>
+                  <Route path="/browse/titles">
+                    <h2>Browse by Title</h2>
+                  </Route>
 
-              <Route path="/browse" component={Browse} />
+                  <Route path="/browse" component={Browse} />
 
-              <Route
-                path="/"
-                render={props => <Results location={props.location} />}
-              />
-            </Switch>
+                  <Route
+                    path="/"
+                    render={props => (
+                      <Results location={props.location} {...booksProps} />
+                    )}
+                  />
+                </Switch>
+              )}
+            </BooksProvider>
             <ScrollToTop />
           </main>
 
