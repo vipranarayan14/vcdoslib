@@ -1,4 +1,4 @@
-import * as Fuse from 'fuse.js';
+import Fuse from 'fuse.js';
 
 const options = {
   distance: 100,
