@@ -9,21 +9,6 @@ import { ResultStats } from './ResultStats';
 
 import styles from './Results.module.css';
 
-const compareTitle = (a, b) => {
-  const articlesRegex = /^(a|an|the)\s+/i;
-
-  const aTitle = a['Title'].replace(articlesRegex, '');
-  const bTitle = b['Title'].replace(articlesRegex, '');
-
-  if (aTitle < bTitle) {
-    return -1;
-  }
-  if (aTitle > bTitle) {
-    return 1;
-  }
-  return 0;
-};
-
 const getSearchResults = fuse => query => {
   if (query) {
     const fuseResults = fuse.search(query);
@@ -83,14 +68,6 @@ export class Results extends Component {
       return <Notify msg="Loading books..." />;
     }
 
-    const { filter } = this.props;
-
-    if (filter) {
-      return (
-        <Books list={this.props.books.filter(filter).sort(compareTitle)} />
-      );
-    }
-
     const query = getSearchQuery(this.props.location.search);
 
     if (!query) {
@@ -130,6 +107,5 @@ export class Results extends Component {
 }
 
 Results.propTypes = {
-  filter: PropTypes.func,
   location: PropTypes.object.isRequired
 };
