@@ -2,25 +2,17 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { useParams } from 'react-router-dom';
 
-import { Books } from './Books';
-
-import { sortByTitle } from './../utils/sort-by-title';
+import { Results } from './Results';
 
 export const BooksBySubject = ({ allBooks, isLoadingData }) => {
   const { code } = useParams();
 
   return (
-    <div>
+    <>
       <h3>Books in Subject: {code} </h3>
 
-      {!isLoadingData && (
-        <Books
-          list={sortByTitle(
-            allBooks.filter(book => book['Subject'].startsWith(code))
-          )}
-        />
-      )}
-    </div>
+      <Results filter={book => book['Subject'].startsWith(code)} />
+    </>
   );
 };
 
