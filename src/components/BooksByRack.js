@@ -2,23 +2,35 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { useParams } from 'react-router-dom';
 
-import { Results } from './Results';
+import { sortByTitle } from './../utils/sort-by-title';
 
-const filterByRack = rack => book =>
-  book['Rack']
-    .replace(/\s/g, '')
-    .split(',')
-    .includes(rack);
+import { Books } from './Books';
+import { Notify } from './Notify';
 
-export const BooksByRack = ({ allBooks, isLoadingData }) => {
+const filterBooksByRack = (rack, books) =>
+  books.filter(book =>
+    book['Rack']
+      .replace(/\s/g, '')
+      .split(',')
+      .includes(rack)
+  );
+
+export const BooksByRack = ({ books, isLoadingBooks }) => {
   const { rack } = useParams();
 
+  const booksInRack = filterBooksByRack(rack, books);
+
   return (
-    <>
+    <div>
       <h3>Books in Rack: {rack} </h3>
 
-      <Results filter={filterByRack(rack)} />
-    </>
+      {!isLoadingBooks &&
+        (Boolean(booksInRack.length) ? (
+          <Books list={sortByTitle(booksInRack)} />
+        ) : (
+          <Notify msg="List not availabe!" />
+        ))}
+    </div>
   );
 };
 
