@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import { getSearchQuery } from '../utils/get-search-query';
+import { getSearchQuery } from '../../utils/get-search-query';
 
 import { SearchIcon } from '../icons/icons';
 

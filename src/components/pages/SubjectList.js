@@ -1,16 +1,14 @@
 import React from 'react';
 import { useRouteMatch } from 'react-router-dom';
 
-import styles from './List.module.css';
-
-import { subjectList } from '../utils/subject-list';
-import { List, Item } from './List';
+import { subjectList } from '../../utils/subject-list';
+import { List, Item } from '../blocks/List';
 
 export const SubjectList = () => {
   const match = useRouteMatch();
 
   return (
-    <div className={styles.List}>
+    <div>
       <h3>Browse by Subject</h3>
 
       <List>

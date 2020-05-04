@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, useRouteMatch } from 'react-router-dom';
 
-import { Card } from './Card';
+import { Card } from '../blocks/Card';
 
 import styles from './Browse.module.css';
 

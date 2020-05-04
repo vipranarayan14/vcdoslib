@@ -1,9 +1,9 @@
 import React from 'react';
 import { useRouteMatch } from 'react-router-dom';
 
-import { List, Item } from './List';
+import { List, Item } from '../blocks/List';
 
-import { rackList } from '../utils/rack-list';
+import { rackList } from '../../utils/rack-list';
 
 export const RackList = () => {
   const match = useRouteMatch();

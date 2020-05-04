@@ -2,10 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { useParams } from 'react-router-dom';
 
-import { sortByTitle } from './../utils/sort-by-title';
+import { sortByTitle } from '../../utils/sort-by-title';
 
-import { Books } from './Books';
-import { Notify } from './Notify';
+import { Books } from '../blocks/Books';
+import { Notify } from '../blocks/Notify';
 
 const filterBooksByRack = (rack, books) =>
   books.filter(book =>

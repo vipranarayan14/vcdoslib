@@ -2,21 +2,21 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
-import { BooksProvider } from './components/BooksProvider';
+import { BooksProvider } from './providers/BooksProvider';
 
 /* components */
-import { BooksByRack } from './components/BooksByRack';
-import { BooksBySubject } from './components/BooksBySubject';
-import { Browse } from './components/Browse';
-import { Footer } from './components/Footer';
+import { BooksByRack } from './pages/BooksByRack';
+import { BooksBySubject } from './pages/BooksBySubject';
+import { Browse } from './pages/Browse';
+import { Footer } from './blocks/Footer';
 import { Logo } from './icons/icons';
-import { Nav } from './components/Nav';
-import { RackList } from './components/RackList';
-import { Results } from './components/Results';
-import { ScrollReset } from './components/ScrollReset';
-import { ScrollToTop } from './components/ScrollToTop';
-import { SearchBox } from './components/SearchBox';
-import { SubjectList } from './components/SubjectList';
+import { Nav } from './blocks/Nav';
+import { RackList } from './pages/RackList';
+import { Results } from './pages/Results';
+import { ScrollReset } from './blocks/ScrollReset';
+import { ScrollToTop } from './blocks/ScrollToTop';
+import { SearchBox } from './blocks/SearchBox';
+import { SubjectList } from './pages/SubjectList';
 
 /* stylesheets */
 import styles from './App.module.css';

@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import { getSearchQuery } from '../utils/get-search-query';
+import { getSearchQuery } from '../../utils/get-search-query';
 
-import { Books } from './Books';
-import { Notify } from './Notify';
-import { ResultStats } from './ResultStats';
+import { Books } from '../blocks/Books';
+import { Notify } from '../blocks/Notify';
+import { ResultStats } from '../blocks/ResultStats';
 
 import styles from './Results.module.css';
 

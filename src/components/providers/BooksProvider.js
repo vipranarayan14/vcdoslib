@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 
-import { initFuse } from '../utils/init-fuse';
+import { initFuse } from '../../utils/init-fuse';
 
-import { loadBooks } from '../utils/load-books';
+import { loadBooks } from '../../utils/load-books';
 
 export class BooksProvider extends Component {
   constructor(props) {

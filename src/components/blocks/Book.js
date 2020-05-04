@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import { Card } from './Card';
 
-import { subjectList } from '../utils/subject-list';
+import { subjectList } from '../../utils/subject-list';
 
 import styles from './Book.module.css';
 
