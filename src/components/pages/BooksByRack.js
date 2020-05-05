@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { useParams } from 'react-router-dom';
 
 import { sortByTitle } from '../../utils/sort-by-title';
 
@@ -15,8 +14,8 @@ const filterBooksByRack = (rack, books) =>
       .includes(rack)
   );
 
-export const BooksByRack = ({ books, isLoadingBooks }) => {
-  const { rack } = useParams();
+export const BooksByRack = ({ books, isLoadingBooks, match }) => {
+  const { rack } = match.params;
 
   const booksInRack = filterBooksByRack(rack, books);
 

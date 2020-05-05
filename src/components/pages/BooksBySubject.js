@@ -1,13 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { useParams } from 'react-router-dom';
-
-import { Books } from '../blocks/Books';
 
 import { sortByTitle } from '../../utils/sort-by-title';
 
-export const BooksBySubject = ({ books, isLoadingBooks }) => {
-  const { code } = useParams();
+import { Books } from '../blocks/Books';
+
+export const BooksBySubject = ({ books, isLoadingBooks, match }) => {
+  const { code } = match.params;
 
   return (
     <div>
