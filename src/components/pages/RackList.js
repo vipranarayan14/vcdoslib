@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import { List, Item } from '../blocks/List';
 
@@ -21,3 +22,7 @@ export const RackList = ({ match }) => (
     </List>
   </div>
 );
+
+RackList.propTypes = {
+  match: PropTypes.object.isRequired
+};

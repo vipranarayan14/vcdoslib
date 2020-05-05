@@ -24,6 +24,7 @@ export const BooksBySubject = ({ books, isLoadingBooks, match }) => {
 };
 
 BooksBySubject.propTypes = {
-  allBooks: PropTypes.array.isRequired,
-  isLoadingData: PropTypes.bool.isRequired
+  books: PropTypes.array.isRequired,
+  isLoadingData: PropTypes.bool.isRequired,
+  match: PropTypes.object.isRequired
 };

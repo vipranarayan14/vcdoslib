@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 export const withProps = (Component, passedProps) =>
   function WithProps(props) {
@@ -6,3 +7,7 @@ export const withProps = (Component, passedProps) =>
 
     return <Component {...passedProps} {...props} />;
   };
+
+withProps.propTypes = {
+  Component: PropTypes.element.isRequired
+};

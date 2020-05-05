@@ -107,5 +107,7 @@ export class Results extends Component {
 }
 
 Results.propTypes = {
+  fuse: PropTypes.object.isRequired,
+  isLoadingBooks: PropTypes.bool.isRequired,
   location: PropTypes.object.isRequired
 };

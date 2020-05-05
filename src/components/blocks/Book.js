@@ -36,9 +36,9 @@ export const Book = ({
 );
 
 Book.propTypes = {
-  AccesionNo: PropTypes.string.isRequired,
+  'Acc No': PropTypes.string.isRequired,
   Author: PropTypes.string.isRequired,
-  BookTitle: PropTypes.string.isRequired,
-  Classification: PropTypes.string.isRequired,
-  RackNo: PropTypes.string.isRequired
+  Title: PropTypes.string.isRequired,
+  Subject: PropTypes.string.isRequired,
+  Rack: PropTypes.string.isRequired
 };

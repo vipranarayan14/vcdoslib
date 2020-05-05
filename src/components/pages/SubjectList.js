@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import { subjectList } from '../../utils/subject-list';
 import { List, Item } from '../blocks/List';
@@ -19,3 +20,7 @@ export const SubjectList = ({ match }) => (
     </List>
   </div>
 );
+
+SubjectList.propTypes = {
+  match: PropTypes.object.isRequired
+};

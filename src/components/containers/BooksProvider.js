@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 import { initFuse } from '../../utils/init-fuse';
 
@@ -42,3 +43,7 @@ export class BooksProvider extends Component {
     );
   }
 }
+
+BooksProvider.propTypes = {
+  children: PropTypes.func
+};
