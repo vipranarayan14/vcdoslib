@@ -6,35 +6,15 @@
   flex-direction: column;
 }
 
-.App header {
-  text-align: center;
-  background-color: var(--theme-bg);
-  color: #fff;
-  padding-top: 10px;
-}
-
-.App header h1 {
-  font-size: 2rem;
-}
-
-.App header h2 {
-  font-size: 1.1rem;
-}
-
-.App main,
-.App header > div {
-  margin: 0 auto;
-  width: 95%;
-}
-
 .App main {
-  margin-bottom: 50px;
+  margin: 0 10px;
   flex: 1;
 }
 
 @media (min-width: 650px) {
-  .App main,
-  .App header > div {
+  .App main {
+    margin: 0 auto;
     max-width: 650px;
+    width: 100%;
   }
 }

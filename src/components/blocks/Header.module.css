@@ -1,0 +1,24 @@
+.Header {
+  text-align: center;
+  background-color: var(--theme-bg);
+  color: #fff;
+}
+
+.Header > div {
+  margin: 30px 10px 0 10px;
+}
+
+.Header h1 {
+  font-size: 2rem;
+}
+
+.Header h2 {
+  font-size: 1.1rem;
+}
+
+@media (min-width: 650px) {
+  .Header > div {
+    margin: 30px auto 0 auto;
+    max-width: 650px;
+  }
+}

@@ -28,24 +28,7 @@ class App extends Component {
         <div className={styles.App}>
           <ScrollReset />
 
-          <header>
-            <div>
-              <h1>
-                <Logo /> Library
-              </h1>
-              <h2>
-                Department of Sanskrit, <br />
-                RKM Vivekananda College
-              </h2>
-              <Route
-                exact
-                path="/"
-                component={props => <SearchBox {...props} />}
-              />
-
-              <Nav />
-            </div>
-          </header>
+      <Header />
 
           <main>
             <BooksProvider>
