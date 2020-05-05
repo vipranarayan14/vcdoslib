@@ -1,6 +1,8 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 
+import { withProps } from './WithProps';
+
 import { BooksByRack } from './pages/BooksByRack';
 import { BooksBySubject } from './pages/BooksBySubject';
 import { Browse } from './pages/Browse';
@@ -10,21 +12,19 @@ import { SubjectList } from './pages/SubjectList';
 
 export const Router = booksProps => (
   <Switch>
-    {/* Note: `render` prop accepts only a function, so only 
-    functional component can be passed directly. */}
     <Route
       path="/browse/racks/:rack"
-      render={routeProps => <BooksByRack {...routeProps} {...booksProps} />}
+      component={withProps(BooksByRack, booksProps)}
     />
 
-    <Route path="/browse/racks" render={RackList} />
+    <Route path="/browse/racks" component={RackList} />
 
     <Route
       path="/browse/subjects/:code"
-      render={routeProps => <BooksBySubject {...routeProps} {...booksProps} />}
+      component={withProps(BooksBySubject, booksProps)}
     />
 
-    <Route path="/browse/subjects" render={SubjectList} />
+    <Route path="/browse/subjects" component={SubjectList} />
 
     <Route path="/browse/authors">
       <h2>Browse by Author</h2>
@@ -34,11 +34,8 @@ export const Router = booksProps => (
       <h2>Browse by Title</h2>
     </Route>
 
-    <Route path="/browse" render={Browse} />
+    <Route path="/browse" component={Browse} />
 
-    <Route
-      path="/"
-      render={routeProps => <Results {...routeProps} {...booksProps} />}
-    />
+    <Route path="/" component={withProps(Results, booksProps)} />
   </Switch>
 );
