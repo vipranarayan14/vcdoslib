@@ -2,13 +2,10 @@
 import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
 
-import { BooksProvider } from './providers/BooksProvider';
-
 /* components */
 import { Footer } from './blocks/Footer';
 import { Header } from './blocks/Header';
 import { Router } from './Router';
-
 import { ScrollReset } from './blocks/ScrollReset';
 import { ScrollToTop } from './blocks/ScrollToTop';
 
@@ -23,11 +20,11 @@ const App = () => (
       <Header />
 
       <main>
-        <BooksProvider>
-          {booksProps => <Router {...booksProps} />}
-        </BooksProvider>
+        <Router />
+
         <ScrollToTop />
       </main>
+
       <Footer />
     </div>
   </BrowserRouter>
