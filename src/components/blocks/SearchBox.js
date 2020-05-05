@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import { getSearchQuery } from '../../utils/get-search-query';
 
-import { SearchIcon } from '../icons/icons';
+import { SearchIcon } from '../icons/SearchIcon';
 
 import styles from './SearchBox.module.css';
 

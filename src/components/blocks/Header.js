@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
 
-import { Logo } from '../icons/icons';
+import { Logo } from '../icons/Logo';
 import { Nav } from './Nav';
 import { SearchBox } from './SearchBox';
 
@@ -11,7 +11,7 @@ export const Header = () => (
   <header className={styles.Header}>
     <div>
       <h1>
-        <Logo /> Library
+        <Logo className={styles.Logo} /> Library
       </h1>
 
       <h2>
