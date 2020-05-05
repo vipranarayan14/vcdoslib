@@ -5,3 +5,8 @@
   font-size: 0.85rem;
   margin-top: 50px;
 }
+
+.Footer .GithubIcon {
+  height: 16px;
+  width: 16px;
+}

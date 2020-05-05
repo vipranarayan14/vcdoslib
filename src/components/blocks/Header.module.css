@@ -8,6 +8,11 @@
   margin: 30px 10px 0 10px;
 }
 
+.Header .Logo {
+  width: 32px;
+  height: 32px;
+}
+
 .Header h1 {
   font-size: 2rem;
 }

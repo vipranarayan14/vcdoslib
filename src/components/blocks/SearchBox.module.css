@@ -43,6 +43,13 @@
   filter: brightness(0.8);
 }
 
+.SearchBox .SearchIcon {
+  fill: var(--theme-accent);
+  stroke: var(--theme-accent);
+  height: 26px;
+  width: 26px;
+}
+
 .SearchBox .searchForm:hover .SearchIcon,
 .SearchBox .searchForm:active .SearchIcon {
   fill: #fff;
