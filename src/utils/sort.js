@@ -1,4 +1,4 @@
-const compareTitle = (a, b) => {
+export const byTitle = (a, b) => {
   const articlesRegex = /^(a|an|the)\s+/i;
 
   const aTitle = a['Title'].replace(articlesRegex, '');
@@ -12,5 +12,3 @@ const compareTitle = (a, b) => {
   }
   return 0;
 };
-
-export const sortByTitle = books => books.sort(compareTitle);

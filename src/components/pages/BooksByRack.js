@@ -1,23 +1,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { sortByTitle } from '../../utils/sort-by-title';
+import { byTitle } from '../../utils/sort';
 
 import { Books } from '../blocks/Books';
 import { Notify } from '../blocks/Notify';
 
-const filterBooksByRack = (num, books) =>
-  books.filter(book =>
-    book['Rack']
-      .replace(/\s/g, '')
-      .split(',')
-      .includes(num)
-  );
+const byRack = num => book =>
+  book['Rack']
+    .replace(/\s/g, '')
+    .split(',')
+    .includes(num);
 
 export const BooksByRack = ({ books, isLoadingBooks, match }) => {
   const { num } = match.params;
 
-  const booksInRack = filterBooksByRack(num, books);
+  const booksInRack = books.filter(byRack(num)).sort(byTitle);
 
   return (
     <div>
@@ -25,7 +23,7 @@ export const BooksByRack = ({ books, isLoadingBooks, match }) => {
 
       {!isLoadingBooks &&
         (Boolean(booksInRack.length) ? (
-          <Books list={sortByTitle(booksInRack)} />
+          <Books list={booksInRack} />
         ) : (
           <Notify msg="List not availabe!" />
         ))}
