@@ -14,9 +14,9 @@ import styles from './App.module.css';
 
 const App = () => (
   <BrowserRouter>
-    <div className={styles.App}>
-      <ScrollReset />
+    <ScrollReset />
 
+    <div className={styles.App}>
       <Header />
 
       <main>
