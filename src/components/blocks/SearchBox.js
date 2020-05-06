@@ -51,7 +51,7 @@ export class SearchBox extends Component {
         <form className={styles.searchForm}>
           <input
             className={styles.searchInput}
-            type="search"
+            type="text"
             name="search"
             defaultValue={this.state.query}
             onChange={this.handleChange}
