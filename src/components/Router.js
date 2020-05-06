@@ -17,7 +17,7 @@ export const Router = () => (
     {booksProps => (
       <Switch>
         <Route
-          path="/browse/racks/:rack"
+          path="/browse/racks/:num"
           component={withProps(BooksByRack, booksProps)}
         />
 

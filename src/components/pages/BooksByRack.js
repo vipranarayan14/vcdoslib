@@ -6,22 +6,22 @@ import { sortByTitle } from '../../utils/sort-by-title';
 import { Books } from '../blocks/Books';
 import { Notify } from '../blocks/Notify';
 
-const filterBooksByRack = (rack, books) =>
+const filterBooksByRack = (num, books) =>
   books.filter(book =>
     book['Rack']
       .replace(/\s/g, '')
       .split(',')
-      .includes(rack)
+      .includes(num)
   );
 
 export const BooksByRack = ({ books, isLoadingBooks, match }) => {
-  const { rack } = match.params;
+  const { num } = match.params;
 
-  const booksInRack = filterBooksByRack(rack, books);
+  const booksInRack = filterBooksByRack(num, books);
 
   return (
     <div>
-      <h3>Books in Rack: {rack} </h3>
+      <h3>Books in Rack: {num}</h3>
 
       {!isLoadingBooks &&
         (Boolean(booksInRack.length) ? (
