@@ -64,8 +64,11 @@ export class Results extends Component {
   }
 
   render() {
-    if (this.props.isLoadingBooks) {
-      return <Notify msg="Loading books..." />;
+    const { isLoadingBooks } = this.props;
+
+    // Hack to show "Loading books..." when first rendered while books are still loading.
+    if (isLoadingBooks) {
+      return <Books list={[]} {...{ isLoadingBooks }} />;
     }
 
     const query = getSearchQuery(this.props.location.search);

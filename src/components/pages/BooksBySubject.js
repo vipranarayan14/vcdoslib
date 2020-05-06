@@ -16,7 +16,7 @@ export const BooksBySubject = ({ books, isLoadingBooks, match }) => {
     <div>
       <h3>Books in Subject: {code}</h3>
 
-      {!isLoadingBooks && <Books list={bookInSubject} />}
+      {<Books list={bookInSubject} {...{ isLoadingBooks }} />}
     </div>
   );
 };

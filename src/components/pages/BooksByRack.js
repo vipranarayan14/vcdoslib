@@ -21,12 +21,23 @@ export const BooksByRack = ({ books, isLoadingBooks, match }) => {
     <div>
       <h3>Books in Rack: {num}</h3>
 
-      {!isLoadingBooks &&
-        (Boolean(booksInRack.length) ? (
-          <Books list={booksInRack} />
-        ) : (
-          <Notify msg="List not availabe!" />
-        ))}
+      {!isLoadingBooks && !Boolean(booksInRack.length) ? (
+        <Notify msg="List not availabe!" />
+      ) : (
+        <Books list={booksInRack} {...{ isLoadingBooks }} />
+      )}
+
+      {/* {(() => {
+        if (isLoadingBooks) {
+          return <NotifyLoadingBooks />;
+        }
+
+        if (!isLoadingBooks && !Boolean(booksInRack.length)) {
+          return <Notify msg="List not availabe!" />;
+        }
+
+        return <Books list={booksInRack} />;
+      })()} */}
     </div>
   );
 };
