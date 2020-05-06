@@ -3,8 +3,7 @@ import React, { Component } from 'react';
 import styles from './ScrollToTop.module.css';
 
 const handleScrollToTopClick = () => {
-  document.body.scrollTop = 0; // For Safari
-  document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+  window.scrollTo({ top: 0, behavior: 'smooth' });
 };
 
 export class ScrollToTop extends Component {
@@ -23,13 +22,11 @@ export class ScrollToTop extends Component {
   }
 
   handleScroll() {
-    const maxScrollTop = 250;
+    const isTop = window.scrollY < window.innerHeight;
 
-    const isTop =
-      document.body.scrollTop < maxScrollTop &&
-      document.documentElement.scrollTop < maxScrollTop;
-
-    this.setState({ isTop });
+    if (this.state.isTop !== isTop) {
+      this.setState({ isTop });
+    }
   }
 
   render() {
