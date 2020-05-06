@@ -1,12 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-export const withProps = (Component, passedProps) =>
-  function WithProps(props) {
-    WithProps.displayName = `WithProps(${Component.name})`;
+export const withProps = (Component, passedProps) => {
+  const WithProps = props => <Component {...passedProps} {...props} />;
 
-    return <Component {...passedProps} {...props} />;
-  };
+  WithProps.displayName = `WithProps(${Component.name})`;
+
+  return WithProps;
+};
 
 withProps.propTypes = {
   Component: PropTypes.element.isRequired
