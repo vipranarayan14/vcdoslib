@@ -1,12 +1,16 @@
-import { useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import React from 'react';
+import { withRouter } from 'react-router-dom';
 
-export const ScrollReset = () => {
-  const { pathname } = useLocation();
+class $ScrollReset extends React.Component {
+  componentDidUpdate(prevProps) {
+    if (this.props.location.pathname !== prevProps.location.pathname) {
+      window.scrollTo(0, 0);
+    }
+  }
 
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [pathname]);
+  render() {
+    return null;
+  }
+}
 
-  return null;
-};
+export const ScrollReset = withRouter($ScrollReset);
