@@ -4,10 +4,11 @@ import PropTypes from 'prop-types';
 import { Card } from './Card';
 
 import { subjectList } from '../../utils/subject-list';
+import { join, iffy } from '../../utils/class-names';
 
 import styles from './Book.module.css';
 
-const markMissing = rack => (rack === 'NA' ? styles.missing : '');
+const bookMissing = rack => rack === 'NA';
 
 export const Book = ({
   'Acc No': accno,
@@ -16,7 +17,7 @@ export const Book = ({
   Subject: subject,
   Rack: rack
 }) => (
-  <Card className={`${styles.Book} ${markMissing(rack)}`}>
+  <Card className={join(styles.Book, iffy(bookMissing(rack), styles.missing))}>
     {!!accno && <div className={styles.accno}>{accno}</div>}
 
     <div className={styles.details}>
