@@ -1,41 +1,40 @@
-import React, { Component } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import styles from './ScrollToTop.module.css';
 
 const handleScrollToTopClick = () => {
-  window.scrollTo({ top: 0, behavior: 'smooth' });
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth'
+  });
 };
 
-export class ScrollToTop extends Component {
-  constructor(props) {
-    super(props);
+const getScrollDifference = () => window.scrollY < window.innerHeight;
 
-    this.state = {
-      isTop: true
+export const ScrollToTop = (props) => {
+  const [isTop, setIsTop] = useState(getScrollDifference());
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const nextIsTop = getScrollDifference();
+
+      if (isTop !== nextIsTop) {
+        setIsTop(nextIsTop);
+      }
     };
 
-    this.handleScroll = this.handleScroll.bind(this);
-  }
+    window.addEventListener('scroll', handleScroll);
 
-  componentDidMount() {
-    window.addEventListener('scroll', this.handleScroll);
-  }
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  });
 
-  handleScroll() {
-    const isTop = window.scrollY < window.innerHeight;
-
-    if (this.state.isTop !== isTop) {
-      this.setState({ isTop });
-    }
-  }
-
-  render() {
-    return (
-      !this.state.isTop && (
-        <div className={styles.ScrollToTop} onClick={handleScrollToTopClick}>
-          Top
-        </div>
-      )
-    );
-  }
-}
+  return (
+    !isTop && (
+      <div className={styles.ScrollToTop} onClick={handleScrollToTopClick}>
+        Top
+      </div>
+    )
+  );
+};
