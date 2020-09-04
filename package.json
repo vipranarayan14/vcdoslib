@@ -30,7 +30,7 @@
   "dependencies": {
     "ajv": "^6.5.4",
     "fuse.js": "5.0.7-beta",
-    "papaparse": "5.1.1",
+    "papaparse": "5.2.0",
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
     "react-router-dom": "5.1.2",
